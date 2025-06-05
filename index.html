@@ -176,24 +176,81 @@
             font-size: 1.3rem;
         }
 
+        /* ... (Your existing CSS, including theme variables and sub-module card styles) ... */
+
         .module-content {
-            padding: 20px;
-             /* Slightly off-white for content area */
-           /* display: none; /* Collapsed by default */
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Default for wider screens */
+            gap: 20px; /* Default gap */
+            padding: 20px; /* Default padding */
+           /* display: none; /* Collapsed by default -- If you implement collapsibles */
         }
 
         .sub-module {
-            /* margin-bottom: 20px; -- Handled by grid gap */
-            background-color: var(--sub-module-card-bg); /* Card background */
+            background-color: var(--sub-module-card-bg);
             border-radius: var(--border-radius);
-            padding: 20px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07); /* Softer shadow for sub-cards */
-            border: 1px solid var(--border-color);
+            padding: 20px; /* Internal padding for the sub-module card content */
+            box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+            border: 2px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
         .sub-module:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        /* ... (Other styles) ... */
+
+
+        /* Responsive Adjustments for Mobile */
+        @media (max-width: 768px) {
+            /* ... (Your existing mobile overrides for .header h1, .tabs-container etc.) ... */
+
+            .module-content {
+                grid-template-columns: 1fr; /* Makes sub-module cards stack vertically */
+                padding: 10px;  /* Reduce padding inside the .module-content on mobile */
+                gap: 10px;       /* Reduce gap between stacked sub-module cards on mobile */
+            }
+
+            .sub-module {
+                padding: 15px; /* Optionally reduce internal padding of sub-module cards slightly on mobile */
+                /* You might not need to change much else for .sub-module itself,
+                   as its width will be controlled by the 1fr grid column. */
+            }
+
+            .roadmap-section {
+                padding: 20px; /* Slightly reduce padding of the main roadmap section on mobile */
+            }
+
+            /* If you also want to reduce padding of the main .content-container on mobile */
+            body { /* Assuming body has the initial 20px padding */
+                padding: 10px;
+            }
+            /* Or if .content-container itself had specific padding */
+            /*
+            .content-container {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            */
+        }
+
+        /* You might have another media query for even smaller screens, e.g., max-width: 480px */
+        @media (max-width: 480px) {
+            .module-content {
+                padding: 5px;
+                gap: 8px;
+            }
+            .sub-module {
+                padding: 10px;
+            }
+             body {
+                padding: 5px;
+            }
+             .roadmap-section {
+                padding: 15px;
+            }
         }
 
         .sub-module:last-child {
