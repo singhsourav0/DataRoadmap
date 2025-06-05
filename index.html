@@ -10,13 +10,30 @@
             --primary-color: #3498db;
             --secondary-color: #2c3e50;
             --accent-color: #e74c3c;
+            --text-color: #333;
+            --bg-color: #ffffff;
             --light-gray: #f4f6f8;
             --medium-gray: #ecf0f1;
             --dark-gray: #7f8c8d;
-            --text-color: #333;
-            --bg-color: #ffffff;
+            --border-color: var(--medium-gray); /* New for borders */
+            --card-bg: var(--bg-color); /* New for general card backgrounds */
+            --module-header-bg: var(--primary-color);
+            --module-header-text: white;
+            --sub-module-card-bg: #fdfdfd; /* Slightly off-white for content area */
+            --sub-module-title-color: var(--secondary-color);
+            --topic-item-bg: var(--light-gray);
+            --topic-item-hover-bg: var(--medium-gray);
+            --topic-item-border-hover: var(--primary-color);
+            --highlight-bg: #fff3cd;
+            --highlight-text: #856404;
+            --highlight-border: #ffeeba;
+            --modal-scrollbar-track: var(--light-gray);
+            --modal-scrollbar-thumb: var(--primary-color);
+            --modal-scrollbar-thumb-hover: var(--secondary-color);
             --border-radius: 8px;
             --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --header-gradient-start: var(--primary-color);
+            --header-gradient-end: var(--secondary-color);
         }
 
         * {
@@ -161,15 +178,37 @@
 
         .module-content {
             padding: 20px;
-            background-color: #fdfdfd; /* Slightly off-white for content area */
+             /* Slightly off-white for content area */
            /* display: none; /* Collapsed by default */
         }
 
         .sub-module {
-            margin-bottom: 20px;
+            /* margin-bottom: 20px; -- Handled by grid gap */
+            background-color: var(--sub-module-card-bg); /* Card background */
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07); /* Softer shadow for sub-cards */
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
+        .sub-module:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
         .sub-module:last-child {
-            margin-bottom: 0;
+            /* margin-bottom: 0; -- No longer needed due to grid */
+        }
+
+        .sub-module-title {
+            font-size: 1.2rem;
+            color: var(--sub-module-title-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--primary-color); /* Use primary color for accent here */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .sub-module-title {
@@ -394,12 +433,225 @@
                 font-size: 1.4rem;
             }
         }
+
+        /* Dark Mode Styles */
+        [data-theme="dark"] {
+            --primary-color: #3498db; /* Can adjust if needed for dark mode */
+            --secondary-color: #bdc3c7; /* Lighter text for dark bg */
+            --accent-color: #e74c3c;
+            --text-color: #ecf0f1;   /* Light text for dark backgrounds */
+            --bg-color: #2c3e50;     /* Dark background */
+            --light-gray: #34495e;   /* Darker shade for light-gray equivalent */
+            --medium-gray: #2c3e50; /* Darker shade for medium-gray equivalent */
+            --dark-gray: #95a5a6;   /* Lighter shade for dark-gray text */
+            --border-color: #34495e; /* Darker border */
+            --card-bg: #34495e;    /* Card background for dark mode */
+            --module-header-bg: #2980b9; /* Slightly adjusted primary */
+            --module-header-text: #ffffff;
+            --sub-module-card-bg: #2c3e50;
+            --sub-module-title-color: var(--primary-color);
+            --topic-item-bg: #283747;
+            --topic-item-hover-bg: #1f2c39;
+            --topic-item-border-hover: var(--accent-color);
+            --highlight-bg: #4a4a4a;
+            --highlight-text: #f1c40f;
+            --highlight-border: #5e5e5e;
+            --modal-scrollbar-track: #2c3e50;
+            --modal-scrollbar-thumb: var(--primary-color);
+            --modal-scrollbar-thumb-hover: var(--accent-color);
+            --header-gradient-start: #2c3e50;
+            --header-gradient-end: #1a252f;
+        }
+
+
+        body {
+            background-color: var(--bg-color); /* Use variable */
+            color: var(--text-color);          /* Use variable */
+            /* ... rest of body styles ... */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+        }
+
+        .header {
+            /* ... existing styles ... */
+            background: linear-gradient(135deg, var(--header-gradient-start), var(--header-gradient-end)); /* Use variables */
+            position: relative; /* For positioning the theme button */
+        }
+
+        .theme-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg); /* Use card bg for button */
+            color: var(--primary-color); /* Icon color */
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .theme-btn:hover {
+            background: var(--medium-gray);
+            transform: scale(1.1);
+        }
+        [data-theme="dark"] .theme-btn {
+            color: var(--primary-color); /* Adjust if needed */
+             border: 1px solid var(--secondary-color);
+        }
+
+
+        /* Adjust other elements to use CSS variables */
+        .tabs-container .tab-btn {
+            background: var(--card-bg); /* Example, was var(--bg-color) */
+            color: var(--secondary-color); /* Example */
+            /* ... rest of styles ... */
+        }
+        [data-theme="dark"] .tabs-container .tab-btn {
+             color: var(--text-color);
+        }
+
+        .tabs-container .tab-btn.active {
+            background: var(--primary-color);
+            color: var(--module-header-text); /* ensure contrast */
+            /* ... */
+        }
+
+        .roadmap-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color); /* Add border to make cards distinct */
+            /* ... */
+        }
+
+        .roadmap-header {
+            /* ... */
+            border-bottom: 3px solid var(--border-color);
+        }
+        .roadmap-header i {
+            /* ... */
+        }
+        .roadmap-description {
+            color: var(--dark-gray);
+            /* ... */
+        }
+
+        .module {
+            /* ... */
+            border: 1px solid var(--border-color);
+            background-color: var(--card-bg); /* Module itself uses card-bg */
+        }
+
+        .module-header {
+            background-color: var(--module-header-bg);
+            color: var(--module-header-text);
+            /* ... */
+        }
+
+        .module-content {
+            /* padding: 20px; -- REMOVE this if you added it based on my theme comment, or adjust */
+            display: grid; /* Use grid for better layout of sub-module cards */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
+            gap: 20px; /* Gap between sub-module cards */
+            padding: 20px; /* Padding around the grid of sub-module cards */
+           /* display: none; /* Collapsed by default -- If you implement collapsibles */
+        }
+
+        .sub-module-title {
+            color: var(--sub-module-title-color);
+            border-bottom: 1px dashed var(--border-color);
+            /* ... */
+        }
+         .sub-module-title i {
+             color: var(--primary-color); /* Keep primary color for sub-module icons */
+         }
+        [data-theme="dark"] .sub-module-title i {
+             color: var(--primary-color); /* Adjust if needed for dark theme, but primary usually works */
+         }
+
+
+        .topic-item {
+            background: var(--topic-item-bg);
+            /* ... */
+        }
+        .topic-item i {
+            /* ... */
+        }
+
+        .topic-item:hover {
+            background-color: var(--topic-item-hover-bg);
+            border-left-color: var(--topic-item-border-hover);
+            /* ... */
+        }
+
+
+        .modal-content {
+            background-color: var(--card-bg);
+            /* ... */
+        }
+
+        .modal-header {
+            border-bottom: 2px solid var(--border-color);
+            /* ... */
+        }
+
+
+        .modal-body {
+            color: var(--text-color);
+            /* ... */
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: var(--modal-scrollbar-track);
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--modal-scrollbar-thumb);
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--modal-scrollbar-thumb-hover);
+        }
+
+
+        .modal-body h4 {
+            color: var(--secondary-color); /* Or var(--primary-color) if you prefer */
+            border-bottom: 1px solid var(--border-color);
+            /* ... */
+        }
+        [data-theme="dark"] .modal-body h4 {
+             color: var(--primary-color);
+        }
+
+
+        .modal-body li:before {
+            /* ... */
+            color: var(--primary-color);
+        }
+
+        .highlight {
+            background: var(--highlight-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--highlight-text);
+            border: 1px solid var(--highlight-border);
+        }
+
+
+        .footer {
+            color: var(--dark-gray);
+            border-top: 1px solid var(--border-color);
+            /* ... */
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <h1><i class="fas fa-map-signs"></i> Tech Career Roadmaps</h1>
         <p>Navigate your journey in Data Analytics, Data Science, Data Engineering, and MLOps with these comprehensive guides.</p>
+        <button id="themeSwitcher" class="theme-btn" title="Toggle theme"><i class="fas fa-moon"></i></button>
     </div>
 
     <div class="tabs-container">
@@ -1839,6 +2091,36 @@
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
+        });
+
+
+            // Theme Switcher Logic
+        const themeSwitcherBtn = document.getElementById('themeSwitcher');
+        const currentTheme = localStorage.getItem('theme');
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'dark') {
+                themeSwitcherBtn.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for dark mode
+                themeSwitcherBtn.title = "Switch to light mode";
+            } else {
+                themeSwitcherBtn.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for light mode
+                themeSwitcherBtn.title = "Switch to dark mode";
+            }
+        }
+
+        if (currentTheme) {
+            setTheme(currentTheme);
+        } else {
+            // Default to light theme or OS preference
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            setTheme(prefersDark ? 'dark' : 'light');
+        }
+
+        themeSwitcherBtn.addEventListener('click', () => {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
         });
 
     </script>
