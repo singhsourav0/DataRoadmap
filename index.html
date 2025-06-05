@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Career Roadmaps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-gray: #f4f6f8;
+            --medium-gray: #ecf0f1;
+            --dark-gray: #7f8c8d;
+            --text-color: #333;
+            --bg-color: #ffffff;
+            --border-radius: 8px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--border-radius);
+            color: white;
+            box-shadow: var(--box-shadow);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+        .header h1 i {
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background: var(--bg-color);
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary-color);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            border-color: var(--primary-color);
+        }
+
+        .content-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .roadmap-section {
+            background: var(--bg-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow);
+            display: none; /* Hidden by default */
+        }
+        .roadmap-section.active {
+            display: block;
+        }
+
+        .roadmap-header {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .roadmap-header i {
+            font-size: 2rem;
+        }
+        .roadmap-description {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            margin-bottom: 30px;
+        }
+
+        .module {
+            margin-bottom: 30px;
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden; /* For border-radius on children */
+        }
+
+        .module-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer; /* To indicate it's expandable */
+        }
+         .module-header i {
+            font-size: 1.3rem;
+        }
+
+        .module-content {
+            padding: 20px;
+            background-color: #fdfdfd; /* Slightly off-white for content area */
+           /* display: none; /* Collapsed by default */
+        }
+
+        .sub-module {
+            margin-bottom: 20px;
+        }
+        .sub-module:last-child {
+            margin-bottom: 0;
+        }
+
+        .sub-module-title {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--medium-gray);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sub-module-title i {
+            color: var(--primary-color);
+        }
+
+        .topic-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .topic-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: var(--light-gray);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid transparent;
+        }
+        .topic-item i {
+            color: var(--accent-color);
+            width: 20px; /* Ensure alignment */
+            text-align: center;
+        }
+
+        .topic-item:hover {
+            background-color: var(--medium-gray);
+            transform: translateX(5px);
+            border-left-color: var(--primary-color);
+        }
+
+        .topic-item h5 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-content {
+            background-color: var(--bg-color);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: modalOpen 0.4s ease-out;
+        }
+
+        @keyframes modalOpen {
+            from { opacity: 0; transform: translateY(-50px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--medium-gray);
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .close-button {
+            color: var(--dark-gray);
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-button:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-body {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            max-height: 65vh;
+            overflow-y: auto;
+            padding-right: 15px; /* For scrollbar */
+        }
+        /* Custom scrollbar for modal body */
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-body::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
+        }
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+
+        .modal-body h4 { /* Subheadings within modal content */
+            color: var(--secondary-color);
+            margin: 20px 0 10px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--medium-gray);
+            padding-bottom: 5px;
+        }
+
+        .modal-body ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .modal-body li {
+            margin-bottom: 8px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .modal-body li:before {
+            content: "\f138"; /* FontAwesome arrow icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1rem;
+            top: 2px;
+        }
+
+        .highlight {
+            background: #fff3cd; /* Light yellow */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #856404; /* Dark yellow text */
+            border: 1px solid #ffeeba;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+             .header h1 i {
+                font-size: 1.8rem;
+            }
+            .tabs-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tab-btn {
+                width: 90%;
+                justify-content: center;
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+            .roadmap-header {
+                font-size: 1.8rem;
+            }
+            .module-header {
+                font-size: 1.3rem;
+            }
+            .sub-module-title {
+                font-size: 1.1rem;
+            }
+            .topic-item h5 {
+                font-size: 0.9rem;
+            }
+            .modal-content {
+                width: 95%;
+                margin: 8% auto;
+                padding: 20px;
+            }
+            .modal-title {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-map-signs"></i> Tech Career Roadmaps</h1>
+        <p>Navigate your journey in Data Analytics, Data Science, Data Engineering, and MLOps with these comprehensive guides.</p>
+    </div>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" data-tab="dataAnalytics"><i class="fas fa-chart-pie"></i> Data Analytics</button>
+        <button class="tab-btn" data-tab="dataScience"><i class="fas fa-flask"></i> Data Science</button>
+        <button class="tab-btn" data-tab="dataEngineering"><i class="fas fa-cogs"></i> Data Engineering</button>
+        <button class="tab-btn" data-tab="mlops"><i class="fas fa-rocket"></i> MLOps Engineering</button>
+    </div>
+
+    <div class="content-container">
+        <!-- Data Analytics Section -->
+        <div class="roadmap-section active" id="dataAnalytics-section">
+            <!-- Content will be dynamically generated by JavaScript -->
+        </div>
+
+        <!-- Data Science Section -->
+        <div class="roadmap-section" id="dataScience-section">
+            <!-- Content will be dynamically generated by JavaScript -->
+        </div>
+
+        <!-- Data Engineering Section -->
+        <div class="roadmap-section" id="dataEngineering-section">
+            <!-- Content will be dynamically generated by JavaScript -->
+        </div>
+
+        <!-- MLOps Engineering Section -->
+        <div class="roadmap-section" id="mlops-section">
+            <!-- Content will be dynamically generated by JavaScript -->
+        </div>
+    </div>
+
+    <div id="topicModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-book-open"></i> <span id="modalTopicTitle">Topic Details</span></h2>
+                <span class="close-button" id="closeModalBtn">×</span>
+            </div>
+            <div id="modalTopicBody" class="modal-body">
+                <!-- Detailed content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Tech Career Roadmaps. Designed by <a href="https://iamsourav.xyz/" target="_blank" rel="noopener">Sourav</a> for aspiring tech professionals.</p>
+    </div>
+
+    <script>
+        const contentData = {
+            dataAnalytics: {
+                domainTitle: "Data Analytics Roadmap",
+                domainIcon: "fas fa-chart-pie",
+                domainDescription: "A comprehensive guide to becoming a Data Analyst, focusing on interpreting data, generating insights, and communicating findings effectively.",
+                modules: [
+                    {
+                        moduleTitle: "1. Foundational Knowledge",
+                        moduleIcon: "fas fa-university",
+                        subModules: [
+                            {
+                                subModuleTitle: "1.1. Understanding Data Analytics",
+                                subModuleIcon: "fas fa-brain",
+                                topics: [
+                                    { id: "da_what_is_da", title: "What is Data Analytics?", shortDesc: "Definition, importance, and role.", fullContent: "<h4>Core Concept</h4><p>Data Analytics is the process of inspecting, cleansing, transforming, and modeling data with the goal of discovering useful information, informing conclusions, and supporting decision-making.</p><h4>Key Aspects</h4><ul><li><span class='highlight'>Business Understanding</span>: Identifying business needs and problems that data can solve.</li><li><span class='highlight'>Data Collection & Preparation</span>: Gathering relevant data and cleaning it for analysis.</li><li><span class='highlight'>Analysis & Modeling</span>: Applying statistical techniques and tools to find patterns.</li><li><span class='highlight'>Interpretation & Communication</span>: Drawing conclusions and presenting findings to stakeholders.</li></ul>" },
+                                    { id: "da_types_analytics", title: "Types of Analytics", shortDesc: "Descriptive, Diagnostic, Predictive, Prescriptive.", fullContent: "<h4>Understanding Different Analytical Approaches</h4><ul><li><span class='highlight'>Descriptive Analytics</span>: What happened? (e.g., dashboards, reports summarizing past data).</li><li><span class='highlight'>Diagnostic Analytics</span>: Why did it happen? (e.g., drill-downs, root cause analysis).</li><li><span class='highlight'>Predictive Analytics</span>: What will happen? (e.g., forecasting, machine learning for predictions).</li><li><span class='highlight'>Prescriptive Analytics</span>: What should we do about it? (e.g., optimization, simulation to recommend actions).</li></ul>" },
+                                    { id: "da_lifecycle", title: "Data Analytics Lifecycle", shortDesc: "CRISP-DM, OSEMN, etc.", fullContent: "<h4>Common Frameworks</h4><p>Understanding the stages of an analytics project is crucial.</p><ul><li><span class='highlight'>CRISP-DM (Cross-Industry Standard Process for Data Mining)</span>: Business Understanding, Data Understanding, Data Preparation, Modeling, Evaluation, Deployment.</li><li><span class='highlight'>OSEMN (Obtain, Scrub, Explore, Model, iNterpret)</span>: Another popular framework focusing on the data workflow.</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "1.2. Essential Mathematics & Statistics",
+                                subModuleIcon: "fas fa-calculator",
+                                topics: [
+                                    { id: "da_stats_descriptive", title: "Descriptive Statistics", shortDesc: "Mean, median, mode, variance, standard deviation.", fullContent: "<h4>Summarizing Data</h4><p>Descriptive statistics summarize the main features of a dataset.</p><ul><li><span class='highlight'>Measures of Central Tendency</span>: Mean, Median, Mode.</li><li><span class='highlight'>Measures of Dispersion</span>: Range, Variance, Standard Deviation, Interquartile Range (IQR).</li><li><span class='highlight'>Understanding Distributions</span>: Normal distribution, skewness, kurtosis.</li></ul>" },
+                                    { id: "da_stats_inferential", title: "Inferential Statistics Basics", shortDesc: "Hypothesis testing, p-values, confidence intervals.", fullContent: "<h4>Drawing Conclusions from Samples</h4><p>Inferential statistics allow you to make predictions or inferences about a larger population based on a sample of data.</p><ul><li><span class='highlight'>Sampling Techniques</span>: Random sampling, stratified sampling.</li><li><span class='highlight'>Hypothesis Testing</span>: Formulating null and alternative hypotheses, t-tests, chi-squared tests.</li><li><span class='highlight'>P-values</span>: Understanding statistical significance.</li><li><span class='highlight'>Confidence Intervals</span>: Estimating population parameters.</li></ul>" },
+                                    { id: "da_probability", title: "Probability Basics", shortDesc: "Basic concepts, conditional probability.", fullContent: "<h4>Understanding Likelihood</h4><ul><li><span class='highlight'>Basic Probability Rules</span>: Addition, multiplication.</li><li><span class='highlight'>Conditional Probability</span>: Probability of an event given another event has occurred.</li><li><span class='highlight'>Bayes' Theorem (Introduction)</span>.</li></ul>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "2. Core Technical Skills & Tools",
+                        moduleIcon: "fas fa-tools",
+                        subModules: [
+                            {
+                                subModuleTitle: "2.1. Spreadsheet Software (Excel / Google Sheets)",
+                                subModuleIcon: "fas fa-file-excel",
+                                topics: [
+                                    { id: "da_excel_formulas", title: "Formulas & Functions", shortDesc: "SUM, AVERAGE, VLOOKUP, IF statements.", fullContent: "<h4>Essential Spreadsheet Operations</h4><ul><li><span class='highlight'>Basic Arithmetic</span>: SUM, AVERAGE, COUNT, MIN, MAX.</li><li><span class='highlight'>Logical Functions</span>: IF, AND, OR, NOT.</li><li><span class='highlight'>Lookup Functions</span>: VLOOKUP, HLOOKUP, INDEX-MATCH.</li><li><span class='highlight'>Text Functions</span>: CONCATENATE, LEFT, RIGHT, MID.</li><li><span class='highlight'>Date & Time Functions</span>.</li></ul>" },
+                                    { id: "da_excel_pivot", title: "Pivot Tables & Charts", shortDesc: "Summarizing and visualizing data.", fullContent: "<h4>Powerful Data Summarization</h4><p>PivotTables allow you to quickly summarize, analyze, explore, and present summary data.</p><ul><li>Creating and customizing PivotTables.</li><li>Calculated fields and items.</li><li>Slicers and Timelines for filtering.</li><li>Creating PivotCharts from PivotTable data.</li></ul>" },
+                                    { id: "da_excel_data_cleaning", title: "Data Cleaning & Validation", shortDesc: "Removing duplicates, handling errors.", fullContent: "<h4>Ensuring Data Quality</h4><ul><li>Removing duplicate rows.</li><li>Text to Columns feature.</li><li>Using Find & Replace effectively.</li><li>Data validation rules.</li><li>Conditional formatting for highlighting issues.</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.2. SQL (Structured Query Language)",
+                                subModuleIcon: "fas fa-database",
+                                topics: [
+                                    { id: "da_sql_basics", title: "SQL Fundamentals", shortDesc: "SELECT, FROM, WHERE, GROUP BY, ORDER BY.", fullContent: "<h4>Querying Relational Databases</h4><ul><li><span class='highlight'>SELECT & FROM</span>: Retrieving data from tables.</li><li><span class='highlight'>WHERE</span>: Filtering data based on conditions.</li><li><span class='highlight'>ORDER BY</span>: Sorting results.</li><li><span class='highlight'>GROUP BY & HAVING</span>: Aggregating data and filtering groups.</li><li><span class='highlight'>Aggregate Functions</span>: COUNT, SUM, AVG, MIN, MAX.</li></ul>" },
+                                    { id: "da_sql_joins", title: "JOIN Operations", shortDesc: "INNER, LEFT, RIGHT, FULL JOINs.", fullContent: "<h4>Combining Data from Multiple Tables</h4><ul><li><span class='highlight'>INNER JOIN</span>: Returns records with matching values in both tables.</li><li><span class='highlight'>LEFT JOIN (or LEFT OUTER JOIN)</span>: Returns all records from the left table, and matched records from the right table.</li><li><span class='highlight'>RIGHT JOIN (or RIGHT OUTER JOIN)</span>: Returns all records from the right table, and matched records from the left table.</li><li><span class='highlight'>FULL JOIN (or FULL OUTER JOIN)</span>: Returns all records when there is a match in either left or right table.</li></ul>" },
+                                    { id: "da_sql_subqueries_cte", title: "Subqueries & CTEs", shortDesc: "Nested queries and Common Table Expressions.", fullContent: "<h4>Advanced Querying Techniques</h4><ul><li><span class='highlight'>Subqueries (Nested Queries)</span>: Queries embedded within other queries.</li><li><span class='highlight'>Common Table Expressions (CTEs)</span>: Using `WITH` clause for temporary, named result sets to improve readability and modularity.</li><li>Window Functions (Introduction).</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.3. Data Visualization Tools",
+                                subModuleIcon: "fas fa-chart-bar",
+                                topics: [
+                                    { id: "da_viz_principles", title: "Principles of Effective Visualization", shortDesc: "Clarity, accuracy, storytelling.", fullContent: "<h4>Communicating Insights Visually</h4><ul><li>Choosing the right chart type (bar, line, pie, scatter, etc.).</li><li>Data-ink ratio (Tufte).</li><li>Avoiding chartjunk.</li><li>Using color effectively.</li><li>Storytelling with data.</li></ul>" },
+                                    { id: "da_viz_tableau", title: "Tableau Basics", shortDesc: "Connecting to data, creating dashboards.", fullContent: "<h4>Introduction to Tableau</h4><p>Tableau is a leading data visualization tool.</p><ul><li>Connecting to various data sources.</li><li>Creating worksheets and dashboards.</li><li>Using filters, parameters, and calculated fields.</li><li>Publishing and sharing dashboards.</li></ul><p><em>(Similar topics for Power BI or other tools can be added)</em></p>" },
+                                    { id: "da_viz_powerbi", title: "Power BI Basics", shortDesc: "DAX fundamentals, report creation.", fullContent: "<h4>Introduction to Power BI</h4><p>Microsoft Power BI is another popular business analytics service.</p><ul><li>Getting data from different sources.</li><li>Transforming data with Power Query Editor.</li><li>Data modeling basics.</li><li>Creating reports with visuals.</li><li>Introduction to DAX (Data Analysis Expressions).</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.4. Programming for Data Analysis (Python or R)",
+                                subModuleIcon: "fab fa-python",
+                                topics: [
+                                    { id: "da_python_basics", title: "Python Fundamentals for DA", shortDesc: "Data types, control flow, functions.", fullContent: "<h4>Python for Data Analytics</h4><p>Python is a versatile language widely used in data analysis.</p><ul><li>Basic syntax, data types (integers, floats, strings, lists, dictionaries, tuples).</li><li>Control flow (if/else, loops).</li><li>Functions.</li><li>Introduction to libraries like NumPy and Pandas.</li></ul><p><em>(Equivalent topics for R if preferred)</em></p>" },
+                                    { id: "da_python_pandas", title: "Pandas Library", shortDesc: "DataFrames, data manipulation, cleaning.", fullContent: "<h4>Data Manipulation with Pandas</h4><ul><li><span class='highlight'>DataFrames & Series</span>: Core Pandas data structures.</li><li>Reading and writing data (CSV, Excel).</li><li>Data selection and indexing (loc, iloc).</li><li>Data cleaning (handling missing values, duplicates).</li><li>Grouping, merging, and joining DataFrames.</li></ul>" },
+                                    { id: "da_python_numpy", title: "NumPy Library", shortDesc: "Numerical operations, arrays.", fullContent: "<h4>Numerical Computing with NumPy</h4><ul><li>Understanding NumPy arrays.</li><li>Array creation and manipulation.</li><li>Mathematical and statistical functions.</li><li>Broadcasting.</li></ul>" },
+                                    { id: "da_python_viz_libs", title: "Python Visualization (Matplotlib, Seaborn)", shortDesc: "Creating charts and plots programmatically.", fullContent: "<h4>Plotting with Python</h4><ul><li><span class='highlight'>Matplotlib</span>: Foundational plotting library (line plots, bar charts, histograms, scatter plots).</li><li><span class='highlight'>Seaborn</span>: Statistical data visualization based on Matplotlib (enhanced aesthetics, complex plots like heatmaps, violin plots).</li></ul>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "3. Business Acumen & Soft Skills",
+                        moduleIcon: "fas fa-briefcase",
+                        subModules: [
+                            {
+                                subModuleTitle: "3.1. Domain Knowledge",
+                                subModuleIcon: "fas fa-industry",
+                                topics: [
+                                    { id: "da_soft_domain", title: "Understanding Business Context", shortDesc: "Industry-specific knowledge.", fullContent: "<h4>Why Domain Knowledge Matters</h4><p>Understanding the industry or business area you are working in helps you ask the right questions, interpret data correctly, and provide relevant insights.</p><ul><li>Researching specific industries (e.g., finance, healthcare, e-commerce).</li><li>Understanding key metrics and KPIs for different businesses.</li><li>Learning common business processes.</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.2. Communication & Presentation",
+                                subModuleIcon: "fas fa-comments",
+                                topics: [
+                                    { id: "da_soft_communication", title: "Effective Communication", shortDesc: "Clearly conveying insights to stakeholders.", fullContent: "<h4>Sharing Your Findings</h4><ul><li>Tailoring communication to your audience (technical vs. non-technical).</li><li>Structuring your message logically.</li><li>Active listening.</li><li>Providing actionable recommendations.</li></ul>" },
+                                    { id: "da_soft_storytelling", title: "Data Storytelling", shortDesc: "Crafting compelling narratives with data.", fullContent: "<h4>Making Data Memorable and Persuasive</h4><p>Data storytelling combines data, visuals, and narrative to explain insights and drive action.</p><ul><li>Identifying the key message.</li><li>Structuring a narrative arc.</li><li>Using visuals effectively to support the story.</li><li>Engaging the audience emotionally and intellectually.</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.3. Problem Solving & Critical Thinking",
+                                subModuleIcon: "fas fa-lightbulb",
+                                topics: [
+                                    { id: "da_soft_problem_solving", title: "Analytical Problem Solving", shortDesc: "Breaking down complex problems.", fullContent: "<h4>Structured Approach to Challenges</h4><ul><li>Defining the problem clearly.</li><li>Breaking down the problem into smaller, manageable parts.</li><li>Formulating hypotheses.</li><li>Gathering and analyzing relevant data.</li><li>Developing and evaluating solutions.</li></ul>" }
+                                ]
+                            }
+                        ]
+                    },
+                     {
+                        moduleTitle: "4. Portfolio & Career Development",
+                        moduleIcon: "fas fa-folder-open",
+                        subModules: [
+                            {
+                                subModuleTitle: "4.1. Building a Portfolio",
+                                subModuleIcon: "fas fa-project-diagram",
+                                topics: [
+                                    { id: "da_career_portfolio", title: "Creating Data Analytics Projects", shortDesc: "Showcasing your skills.", fullContent: "<h4>Demonstrating Your Abilities</h4><p>A strong portfolio is essential for landing a job.</p><ul><li>Find public datasets (Kaggle, UCI ML Repository, government sites).</li><li>Work on end-to-end projects: from data cleaning to visualization and insight generation.</li><li>Document your process clearly.</li><li>Use GitHub or a personal website to showcase projects.</li></ul>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "4.2. Networking & Job Search",
+                                subModuleIcon: "fas fa-users",
+                                topics: [
+                                    { id: "da_career_networking", title: "Networking & Continuous Learning", shortDesc: "Connecting with professionals, staying updated.", fullContent: "<h4>Growing Your Career</h4><ul><li>Join online communities and forums.</li><li>Attend webinars, meetups, and conferences (if possible).</li><li>Connect with professionals on LinkedIn.</li><li>Stay updated with new tools, techniques, and industry trends.</li><li>Practice for interviews (technical and behavioral).</li></ul>" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            dataScience: {
+                domainTitle: "Data Science Roadmap",
+                domainIcon: "fas fa-flask",
+                domainDescription: "A comprehensive pathway for aspiring Data Scientists, covering statistics, programming, machine learning, deep learning, big data, and system design to extract deep insights and build intelligent systems.",
+                modules: [
+                    {
+                        moduleTitle: "1. Foundational Pillars",
+                        moduleIcon: "fas fa-university",
+                        subModules: [
+                            {
+                                subModuleTitle: "1.1. Mathematics for Data Science",
+                                subModuleIcon: "fas fa-calculator",
+                                topics: [
+                                    {
+                                        id: "ds_math_linalg", title: "Linear Algebra",
+                                        shortDesc: "Vectors, matrices, EVD, SVD, PCA.",
+                                        fullContent: `
+                                            <h4>Core Concepts</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Vectors & Spaces:</span> Vector operations, dot product, norm, linear independence, basis.</li>
+                                                <li><span class='highlight'>Matrices:</span> Matrix operations (addition, multiplication), transpose, inverse, determinant.</li>
+                                                <li><span class='highlight'>Solving Linear Systems:</span> Gaussian elimination, Ax=b.</li>
+                                                <li><span class='highlight'>Eigenvalues & Eigenvectors (EVD):</span> Concept and computation, importance in PCA.</li>
+                                                <li><span class='highlight'>Singular Value Decomposition (SVD):</span> Concept, computation, and applications (dimensionality reduction, recommender systems).</li>
+                                                <li><span class='highlight'>Principal Component Analysis (PCA):</span> Mathematical foundation using EVD/SVD.</li>
+                                            </ul>
+                                            <h4>Applications in ML</h4>
+                                            <ul>
+                                                <li>Representing data, image processing, natural language processing (embeddings).</li>
+                                                <li>Underlying many ML algorithms (e.g., linear regression, SVMs, neural networks).</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "ds_math_calculus", title: "Calculus",
+                                        shortDesc: "Derivatives, gradients, optimization, chain rule.",
+                                        fullContent: `
+                                            <h4>Differential Calculus</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Limits & Continuity.</span></li>
+                                                <li><span class='highlight'>Derivatives:</span> Rules of differentiation, partial derivatives.</li>
+                                                <li><span class='highlight'>Gradients:</span> Vector of partial derivatives, direction of steepest ascent.</li>
+                                                <li><span class='highlight'>Chain Rule:</span> Essential for backpropagation in neural networks.</li>
+                                                <li><span class='highlight'>Optimization:</span> Finding minima/maxima of functions, gradient descent.</li>
+                                            </ul>
+                                            <h4>Integral Calculus (Basic Understanding)</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Integrals:</span> Area under a curve, fundamental theorem of calculus.</li>
+                                                <li>Applications in probability (e.g., probability density functions).</li>
+                                            </ul>
+                                            <h4>Applications in ML</h4>
+                                            <ul>
+                                                <li>Optimizing loss functions (gradient descent and its variants).</li>
+                                                <li>Understanding how model parameters are updated.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "ds_math_probability", title: "Probability Theory",
+                                        shortDesc: "Events, distributions, Bayes' theorem, conditional probability.",
+                                        fullContent: `
+                                            <h4>Fundamentals</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Basic Concepts:</span> Sample space, events, axioms of probability.</li>
+                                                <li><span class='highlight'>Conditional Probability & Independence.</span></li>
+                                                <li><span class='highlight'>Bayes' Theorem:</span> Foundation for Bayesian inference and many ML models (e.g., Naive Bayes).</li>
+                                                <li><span class='highlight'>Random Variables:</span> Discrete and continuous.</li>
+                                            </ul>
+                                            <h4>Probability Distributions</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Discrete:</span> Bernoulli, Binomial, Poisson.</li>
+                                                <li><span class='highlight'>Continuous:</span> Uniform, Normal (Gaussian), Exponential, Chi-Squared, t-distribution.</li>
+                                                <li>Probability Mass Function (PMF), Probability Density Function (PDF), Cumulative Distribution Function (CDF).</li>
+                                            </ul>
+                                            <h4>Key Concepts</h4>
+                                            <ul>
+                                                <li>Expected Value, Variance, Covariance, Correlation.</li>
+                                                <li>Law of Large Numbers, Central Limit Theorem.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "ds_math_statistics", title: "Statistical Inference",
+                                        shortDesc: "Estimation, hypothesis testing, ANOVA, regression basics.",
+                                        fullContent: `
+                                            <h4>Descriptive Statistics Review</h4>
+                                            <ul>
+                                                <li>Measures of central tendency (mean, median, mode).</li>
+                                                <li>Measures of dispersion (variance, standard deviation, IQR).</li>
+                                            </ul>
+                                            <h4>Inferential Statistics</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Estimation:</span> Point estimates, confidence intervals.</li>
+                                                <li><span class='highlight'>Hypothesis Testing:</span>
+                                                    <ul>
+                                                        <li>Formulating null (H0) and alternative (H1) hypotheses.</li>
+                                                        <li>Test statistics (z-test, t-test, chi-squared test, F-test).</li>
+                                                        <li>P-values and significance levels (alpha).</li>
+                                                        <li>Type I and Type II errors.</li>
+                                                    </ul>
+                                                </li>
+                                                <li><span class='highlight'>Analysis of Variance (ANOVA):</span> Comparing means of more than two groups.</li>
+                                                <li><span class='highlight'>Correlation & Covariance:</span> Measuring relationships between variables.</li>
+                                                <li><span class='highlight'>Introduction to Regression:</span> Simple Linear Regression concepts.</li>
+                                                <li><span class='highlight'>Bayesian vs. Frequentist Inference (Conceptual).</span></li>
+                                            </ul>`
+                                    }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "1.2. Programming Proficiency",
+                                subModuleIcon: "fab fa-python", // or "fab fa-r-project"
+                                topics: [
+                                    {
+                                        id: "ds_prog_python_adv", title: "Python (Advanced)",
+                                        shortDesc: "OOP, data structures, iterators, generators, decorators.",
+                                        fullContent: `
+                                            <h4>Core Python Mastery</h4>
+                                            <ul>
+                                                <li>Review of fundamentals: Data types, control flow, functions, modules.</li>
+                                                <li><span class='highlight'>Data Structures:</span> Advanced usage of lists, tuples, dictionaries, sets. List comprehensions, dictionary comprehensions.</li>
+                                                <li><span class='highlight'>Object-Oriented Programming (OOP):</span> Classes, objects, inheritance, polymorphism, encapsulation.</li>
+                                                <li><span class='highlight'>Functional Programming Concepts:</span> Lambda functions, map, filter, reduce.</li>
+                                                <li><span class='highlight'>Iterators & Generators:</span> Efficient memory usage.</li>
+                                                <li><span class='highlight'>Decorators:</span> Modifying functions or methods.</li>
+                                                <li><span class='highlight'>Exception Handling:</span> try, except, finally.</li>
+                                                <li><span class='highlight'>File I/O:</span> Reading and writing various file formats.</li>
+                                                <li><span class='highlight'>Regular Expressions (re module).</span></li>
+                                                <li><span class='highlight'>Working with APIs.</span></li>
+                                                <li><span class='highlight'>Best Practices:</span> PEP 8, code readability, modularity.</li>
+                                            </ul>
+                                            <p><em>Note: If focusing on R, similar advanced topics for R would be covered here.</em></p>`
+                                    },
+                                    {
+                                        id: "ds_prog_numpy", title: "NumPy",
+                                        shortDesc: "Arrays, broadcasting, linear algebra, random numbers.",
+                                        fullContent: `
+                                            <h4>Numerical Computing with NumPy</h4>
+                                            <ul>
+                                                <li><span class='highlight'>ndarray Object:</span> Creating and manipulating multi-dimensional arrays.</li>
+                                                <li><span class='highlight'>Data Types:</span> int, float, bool, complex.</li>
+                                                <li><span class='highlight'>Array Indexing & Slicing.</span></li>
+                                                <li><span class='highlight'>Vectorized Operations:</span> Universal functions (ufuncs) for element-wise operations.</li>
+                                                <li><span class='highlight'>Broadcasting:</span> Performing operations on arrays of different shapes.</li>
+                                                <li><span class='highlight'>Linear Algebra Operations:</span> Dot product, matrix multiplication, inverse, determinant (<code>numpy.linalg</code>).</li>
+                                                <li><span class='highlight'>Random Number Generation (<code>numpy.random</code>).</span></li>
+                                                <li>Reading/writing arrays to/from files.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "ds_prog_pandas", title: "Pandas",
+                                        shortDesc: "DataFrames, Series, data cleaning, manipulation, merging.",
+                                        fullContent: `
+                                            <h4>Data Analysis and Manipulation with Pandas</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Series & DataFrame:</span> Core data structures.</li>
+                                                <li><span class='highlight'>Data Ingestion:</span> Reading from CSV, Excel, SQL databases, JSON, HTML.</li>
+                                                <li><span class='highlight'>Data Selection & Indexing:</span> <code>.loc[]</code>, <code>.iloc[]</code>, boolean indexing.</li>
+                                                <li><span class='highlight'>Data Cleaning:</span>
+                                                    <ul>
+                                                        <li>Handling missing values (<code>.isnull()</code>, <code>.fillna()</code>, <code>.dropna()</code>).</li>
+                                                        <li>Handling duplicates (<code>.duplicated()</code>, <code>.drop_duplicates()</code>).</li>
+                                                        <li>Data type conversions.</li>
+                                                    </ul>
+                                                </li>
+                                                <li><span class='highlight'>Data Transformation:</span> Applying functions, mapping values.</li>
+                                                <li><span class='highlight'>Grouping & Aggregation:</span> <code>.groupby()</code>, aggregate functions (sum, mean, count, etc.).</li>
+                                                <li><span class='highlight'>Merging, Joining, Concatenating DataFrames.</span></li>
+                                                <li><span class='highlight'>Working with Time Series Data.</span></li>
+                                                <li><span class='highlight'>Pivot Tables & Crosstabs.</span></li>
+                                                <li>Writing data to various formats.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "ds_prog_viz_py", title: "Data Visualization (Python)",
+                                        shortDesc: "Matplotlib, Seaborn, Plotly, Bokeh.",
+                                        fullContent: `
+                                            <h4>Visualizing Data with Python Libraries</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Matplotlib:</span>
+                                                    <ul>
+                                                        <li>Foundation library for static, animated, and interactive visualizations.</li>
+                                                        <li>Creating basic plots: line, bar, scatter, histogram, pie.</li>
+                                                        <li>Customizing plots: labels, titles, legends, colors, styles.</li>
+                                                        <li>Subplots.</li>
+                                                    </ul>
+                                                </li>
+                                                <li><span class='highlight'>Seaborn:</span>
+                                                    <ul>
+                                                        <li>Built on Matplotlib, provides high-level interface for statistical graphics.</li>
+                                                        <li>Enhanced aesthetics for common statistical plots: distribution plots, categorical plots, regression plots, heatmaps, pair plots.</li>
+                                                    </ul>
+                                                </li>
+                                                <li><span class='highlight'>Plotly & Dash:</span>
+                                                    <ul>
+                                                        <li>Interactive visualizations for web applications.</li>
+                                                        <li>Creating complex dashboards with Dash.</li>
+                                                    </ul>
+                                                </li>
+                                                <li><span class='highlight'>Bokeh (Optional):</span> Another library for interactive web visualizations.</li>
+                                                <li>Principles of effective data visualization.</li>
+                                            </ul>`
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "2. Data Wrangling & Preprocessing",
+                        moduleIcon: "fas fa-wrench",
+                        subModules: [
+                            {
+                                subModuleTitle: "2.1. Data Collection & Sourcing",
+                                subModuleIcon: "fas fa-cloud-download-alt",
+                                topics: [
+                                    { id: "ds_dw_webscraping", title: "Web Scraping (Beautiful Soup, Scrapy)", shortDesc: "Extracting data from websites.", fullContent: "<p>Collecting data from websites. Libraries like Beautiful Soup for parsing HTML/XML and Scrapy for building web crawlers. Ethical considerations and robots.txt.</p>" },
+                                    { id: "ds_dw_apis", title: "Working with APIs", shortDesc: "Accessing data via REST/GraphQL APIs.", fullContent: "<p>Understanding RESTful APIs, authentication (OAuth, API keys), making requests (e.g., using Python's <code>requests</code> library), handling JSON/XML responses.</p>" },
+                                    { id: "ds_dw_databases", title: "Querying Databases (SQL, NoSQL)", shortDesc: "Extracting data from various database systems.", fullContent: "<p>Connecting to SQL databases (e.g., PostgreSQL, MySQL) using Python libraries (psycopg2, SQLAlchemy). Basic querying of NoSQL databases (e.g., MongoDB with PyMongo).</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.2. Advanced Data Cleaning & Preparation",
+                                subModuleIcon: "fas fa-broom",
+                                topics: [
+                                    { id: "ds_dw_missing_adv", title: "Advanced Missing Data Imputation", shortDesc: "Mean/median/mode, regression, k-NN imputation.", fullContent: "<p>Techniques beyond simple mean/median/mode imputation. Model-based imputation (e.g., regression imputation) and k-Nearest Neighbors (k-NN) imputation. Understanding imputation biases.</p>" },
+                                    { id: "ds_dw_outlier", title: "Outlier Detection & Treatment", shortDesc: "Statistical methods, Z-score, IQR, DBSCAN.", fullContent: "<p>Identifying outliers using statistical methods (Z-score, IQR rule), visualization (box plots, scatter plots), and model-based techniques like DBSCAN. Deciding whether to remove, transform, or cap outliers.</p>" },
+                                    { id: "ds_dw_encoding", title: "Categorical Data Encoding", shortDesc: "One-Hot, Label, Target, Feature Hashing.", fullContent: "<p>Converting categorical variables into numerical representations for ML models. Techniques include One-Hot Encoding, Label Encoding, Ordinal Encoding, Target Encoding, Feature Hashing. Pros and cons of each.</p>" },
+                                    { id: "ds_dw_scaling", title: "Feature Scaling & Normalization", shortDesc: "StandardScaler, MinMaxScaler, RobustScaler.", fullContent: "<p>Scaling numerical features to a common range. Techniques like Standardization (Z-score normalization), Min-Max Scaling, Robust Scaling (handles outliers better). Importance for distance-based algorithms.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.3. Feature Engineering",
+                                subModuleIcon: "fas fa-lightbulb-on", // Changed icon
+                                topics: [
+                                    { id: "ds_fe_creation", title: "Feature Creation", shortDesc: "Creating new features from existing ones.", fullContent: "<p>Deriving new, informative features from existing data. Examples: polynomial features, interaction terms, binning numerical data, extracting information from dates (e.g., day of week, month).</p>" },
+                                    { id: "ds_fe_selection", title: "Feature Selection Techniques", shortDesc: "Filter, Wrapper, Embedded methods.", fullContent: `
+                                        <h4>Methods to Select Relevant Features:</h4>
+                                        <ul>
+                                            <li><span class='highlight'>Filter Methods:</span> Using statistical measures to score features (e.g., Chi-squared, ANOVA F-value, correlation coefficients).</li>
+                                            <li><span class='highlight'>Wrapper Methods:</span> Using a model to evaluate subsets of features (e.g., Recursive Feature Elimination - RFE, Forward/Backward Selection). Computationally expensive.</li>
+                                            <li><span class='highlight'>Embedded Methods:</span> Feature selection as part of the model training process (e.g., L1 Regularization - Lasso, Tree-based feature importance).</li>
+                                        </ul>`
+                                    },
+                                    { id: "ds_fe_dim_reduction", title: "Dimensionality Reduction", shortDesc: "PCA, t-SNE, LDA.", fullContent: `
+                                        <h4>Reducing Number of Features:</h4>
+                                        <ul>
+                                            <li><span class='highlight'>Principal Component Analysis (PCA):</span> Unsupervised linear transformation to find principal components that capture most variance.</li>
+                                            <li><span class='highlight'>t-distributed Stochastic Neighbor Embedding (t-SNE):</span> Non-linear technique primarily for visualization of high-dimensional data in low dimensions.</li>
+                                            <li><span class='highlight'>Linear Discriminant Analysis (LDA):</span> Supervised technique for classification tasks, aims to maximize separability between classes.</li>
+                                            <li>Others: UMAP, Factor Analysis.</li>
+                                        </ul>`
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "3. Machine Learning - Core",
+                        moduleIcon: "fas fa-robot",
+                        subModules: [
+                            {
+                                subModuleTitle: "3.1. Supervised Learning - Regression",
+                                subModuleIcon: "fas fa-chart-line",
+                                topics: [
+                                    { id: "ds_ml_linear_reg", title: "Linear Regression", shortDesc: "Simple, multiple, assumptions, evaluation.", fullContent: "<p>Predicting continuous values. Simple Linear Regression, Multiple Linear Regression. Assumptions (linearity, independence, homoscedasticity, normality of residuals). Gradient Descent for optimization. Evaluation metrics (MSE, RMSE, MAE, R-squared, Adjusted R-squared).</p>" },
+                                    { id: "ds_ml_poly_reg", title: "Polynomial Regression", shortDesc: "Fitting non-linear data.", fullContent: "<p>Extending linear regression to model non-linear relationships by adding polynomial terms. Overfitting and regularization considerations.</p>" },
+                                    { id: "ds_ml_regularization_reg", title: "Regularization (Ridge, Lasso, ElasticNet)", shortDesc: "Preventing overfitting in regression.", fullContent: "<p>Techniques to reduce model complexity and prevent overfitting. L1 Regularization (Lasso) for feature selection, L2 Regularization (Ridge), ElasticNet (combination of L1 and L2).</p>" },
+                                    { id: "ds_ml_svm_reg", title: "Support Vector Regression (SVR)", shortDesc: "Using SVMs for regression tasks.", fullContent: "<p>Adapting Support Vector Machines for regression. Concept of epsilon-insensitive tube. Kernels for non-linear SVR.</p>" },
+                                    { id: "ds_ml_tree_reg", title: "Decision Trees & Random Forest Regression", shortDesc: "Tree-based models for regression.", fullContent: "<p>Using Decision Trees for regression (predicting average value in leaf nodes). Random Forest Regression as an ensemble of decision trees to improve performance and reduce overfitting. Feature importance.</p>" },
+                                    { id: "ds_ml_boosting_reg", title: "Gradient Boosting Regression (GBM, XGBoost, LightGBM, CatBoost)", shortDesc: "Advanced boosting algorithms for regression.", fullContent: "<p>Powerful ensemble techniques. Gradient Boosting Machines (GBM), XGBoost, LightGBM, CatBoost for high performance regression tasks. Hyperparameter tuning.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.2. Supervised Learning - Classification",
+                                subModuleIcon: "fas fa-tags",
+                                topics: [
+                                    { id: "ds_ml_logistic_reg", title: "Logistic Regression", shortDesc: "Binary and multiclass classification, odds ratio.", fullContent: "<p>Predicting categorical outcomes. Sigmoid function, log-loss (binary cross-entropy). Odds, Log-odds, Odds Ratio. Extension to multiclass classification (e.g., One-vs-Rest, Softmax Regression). Evaluation metrics (Accuracy, Precision, Recall, F1-score, ROC-AUC, Confusion Matrix).</p>" },
+                                    { id: "ds_ml_knn", title: "K-Nearest Neighbors (KNN)", shortDesc: "Instance-based learning, distance metrics.", fullContent: "<p>Non-parametric, instance-based learning algorithm. Choice of 'k', distance metrics (Euclidean, Manhattan). Pros and cons (computationally intensive for large datasets).</p>" },
+                                    { id: "ds_ml_svm_class", title: "Support Vector Machines (SVM)", shortDesc: "Maximal margin classifier, kernels.", fullContent: "<p>Finding optimal hyperplane that maximizes margin between classes. Support vectors. Kernels (linear, polynomial, RBF) for non-linear classification. Hyperparameter tuning (C, gamma).</p>" },
+                                    { id: "ds_ml_naive_bayes", title: "Naive Bayes Classifiers", shortDesc: "Probabilistic classifier based on Bayes' theorem.", fullContent: "<p>Family of probabilistic classifiers (Gaussian NB, Multinomial NB, Bernoulli NB) based on Bayes' theorem with a 'naive' assumption of feature independence. Effective for text classification.</p>" },
+                                    { id: "ds_ml_tree_class", title: "Decision Trees & Random Forest Classification", shortDesc: "Tree-based models for classification.", fullContent: "<p>Using Decision Trees for classification (splitting criteria like Gini impurity, entropy). Random Forest Classification as an ensemble method. Feature importance.</p>" },
+                                    { id: "ds_ml_boosting_class", title: "Gradient Boosting Classification (GBM, XGBoost, LightGBM, CatBoost)", shortDesc: "Advanced boosting for classification.", fullContent: "<p>Ensemble techniques like GBM, XGBoost, LightGBM, CatBoost for high-performance classification. Hyperparameter tuning.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.3. Unsupervised Learning",
+                                subModuleIcon: "fas fa-search-plus", // Changed icon
+                                topics: [
+                                    { id: "ds_ml_kmeans", title: "K-Means Clustering", shortDesc: "Partitioning data into k clusters.", fullContent: "<p>Iterative algorithm to partition data into k pre-defined, non-overlapping clusters. Choosing 'k' (Elbow method, Silhouette score). Initialization methods (e.g., k-means++). Limitations.</p>" },
+                                    { id: "ds_ml_hierarchical_clustering", title: "Hierarchical Clustering", shortDesc: "Agglomerative and divisive approaches.", fullContent: "<p>Building a hierarchy of clusters. Agglomerative (bottom-up) and Divisive (top-down) methods. Dendrograms. Linkage criteria (single, complete, average).</p>" },
+                                    { id: "ds_ml_dbscan", title: "DBSCAN", shortDesc: "Density-based clustering.", fullContent: "<p>Density-Based Spatial Clustering of Applications with Noise. Can find arbitrarily shaped clusters and identify noise points. Parameters: eps, min_samples.</p>" },
+                                    { id: "ds_ml_pca_unsupervised", title: "Principal Component Analysis (PCA) for Unsupervised Learning", shortDesc: "Dimensionality reduction as unsupervised task.", fullContent: "<p>Using PCA for exploring data structure, visualization, and noise reduction in an unsupervised manner. Interpretation of principal components.</p>" },
+                                    { id: "ds_ml_anomaly_detection", title: "Anomaly Detection (Intro)", shortDesc: "Identifying unusual data points (e.g. Isolation Forest).", fullContent: "<p>Identifying rare items, events or observations which raise suspicions by differing significantly from the majority of the data. Introduction to techniques like Isolation Forest, Local Outlier Factor (LOF), One-Class SVM.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.4. Model Evaluation & Validation",
+                                subModuleIcon: "fas fa-check-circle",
+                                topics: [
+                                    { id: "ds_ml_metrics_reg", title: "Regression Metrics Deep Dive", shortDesc: "MSE, RMSE, MAE, R², Adjusted R².", fullContent: "<p>Detailed understanding and interpretation of Mean Squared Error, Root Mean Squared Error, Mean Absolute Error, R-squared, and Adjusted R-squared. When to use each.</p>" },
+                                    { id: "ds_ml_metrics_class", title: "Classification Metrics Deep Dive", shortDesc: "Accuracy, Precision, Recall, F1, ROC-AUC, Log-loss.", fullContent: "<p>Confusion matrix, True Positives, True Negatives, False Positives, False Negatives. Detailed understanding of Accuracy, Precision, Recall (Sensitivity), Specificity, F1-Score, ROC Curve, Area Under ROC Curve (AUC), Log-loss. Handling imbalanced datasets.</p>" },
+                                    { id: "ds_ml_cross_validation", title: "Cross-Validation Techniques", shortDesc: "K-Fold, Stratified K-Fold, Leave-One-Out.", fullContent: "<p>Techniques for robust model evaluation and preventing overfitting. K-Fold Cross-Validation, Stratified K-Fold (for imbalanced data), Leave-One-Out Cross-Validation (LOOCV), Time Series Cross-Validation.</p>" },
+                                    { id: "ds_ml_hyperparameter_tuning", title: "Hyperparameter Tuning", shortDesc: "GridSearch, RandomizedSearch, Bayesian Optimization.", fullContent: "<p>Finding the optimal set of hyperparameters for a model. GridSearchCV, RandomizedSearchCV. Introduction to more advanced techniques like Bayesian Optimization (e.g., using Hyperopt, Optuna).</p>" },
+                                    { id: "ds_ml_bias_variance", title: "Bias-Variance Tradeoff", shortDesc: "Understanding model underfitting and overfitting.", fullContent: "<p>Fundamental concept in ML. Understanding how model complexity relates to bias (underfitting) and variance (overfitting). Strategies to manage the tradeoff.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "4. Advanced Machine Learning & Deep Learning",
+                        moduleIcon: "fas fa-cogs", // Changed icon
+                        subModules: [
+                            {
+                                subModuleTitle: "4.1. Ensemble Learning",
+                                subModuleIcon: "fas fa-users-cog", // Changed icon
+                                topics: [
+                                    { id: "ds_advml_bagging", title: "Bagging (Bootstrap Aggregating)", shortDesc: "Random Forests.", fullContent: "<p>Ensemble meta-algorithm to improve stability and accuracy. Random Forests as a prime example. How it reduces variance.</p>" },
+                                    { id: "ds_advml_boosting", title: "Boosting Deep Dive (AdaBoost, Gradient Boosting)", shortDesc: "Sequential learning, weighting examples.", fullContent: "<p>Ensemble methods that convert weak learners into strong learners. AdaBoost (Adaptive Boosting). Gradient Boosting Machines (GBM) and the mathematical intuition. Introduction to XGBoost, LightGBM, CatBoost as advanced implementations.</p>" },
+                                    { id: "ds_advml_stacking_blending", title: "Stacking & Blending", shortDesc: "Combining multiple models using a meta-learner.", fullContent: "<p>Advanced ensemble techniques where predictions from multiple base models are used as input to a final meta-learner (stacking) or combined using simple averaging/weighted averaging (blending).</p>" }
+                                ]
+                            },
+                             {
+                                subModuleTitle: "4.2. Deep Learning Fundamentals",
+                                subModuleIcon: "fas fa-brain",
+                                topics: [
+                                    { id: "ds_dl_intro_nn", title: "Introduction to Neural Networks", shortDesc: "Perceptrons, MLP, activation functions.", fullContent: "<p>Biological inspiration. Perceptron. Multi-Layer Perceptrons (MLPs). Activation functions (Sigmoid, Tanh, ReLU, Leaky ReLU, Softmax). Forward Propagation.</p>" },
+                                    { id: "ds_dl_backprop_opt", title: "Backpropagation & Optimization", shortDesc: "Gradient descent variants, loss functions.", fullContent: "<p>Understanding backpropagation algorithm for training NNs. Loss functions (MSE, Cross-Entropy). Gradient Descent, Stochastic Gradient Descent (SGD), Mini-batch SGD. Optimizers (Adam, RMSprop, Adagrad).</p>" },
+                                    { id: "ds_dl_frameworks", title: "Deep Learning Frameworks (TensorFlow/Keras, PyTorch)", shortDesc: "Practical implementation.", fullContent: "<p>Hands-on experience with major DL frameworks. TensorFlow with Keras API and PyTorch. Building, training, and evaluating NNs. Tensor operations, automatic differentiation.</p>" },
+                                    { id: "ds_dl_regularization_dl", title: "Regularization in Deep Learning", shortDesc: "Dropout, L1/L2, Batch Normalization, Early Stopping.", fullContent: "<p>Techniques to prevent overfitting in deep NNs. Dropout, L1/L2 regularization for weights, Batch Normalization, Early Stopping.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "4.3. Specialized Deep Learning Architectures",
+                                subModuleIcon: "fas fa-atom-alt", // Changed icon
+                                topics: [
+                                    { id: "ds_dl_cnn", title: "Convolutional Neural Networks (CNNs)", shortDesc: "Image recognition, Conv layers, Pooling.", fullContent: "<p>Architectures for image processing and computer vision. Convolutional layers, Pooling layers (Max, Average), Fully Connected layers. Famous architectures (LeNet, AlexNet, VGG, ResNet - conceptual overview).</p>" },
+                                    { id: "ds_dl_rnn_lstm_gru", title: "Recurrent Neural Networks (RNNs), LSTMs, GRUs", shortDesc: "Sequential data, NLP, time series.", fullContent: "<p>Architectures for sequential data (text, time series). Vanishing/exploding gradient problem in RNNs. Long Short-Term Memory (LSTM) networks and Gated Recurrent Units (GRUs) to address this.</p>" },
+                                    { id: "ds_dl_transformers_intro", title: "Transformers & Attention (Introduction)", shortDesc: "Foundation for modern NLP (BERT, GPT).", fullContent: "<p>Introduction to the attention mechanism and the Transformer architecture, which revolutionized NLP. Conceptual understanding of models like BERT and GPT.</p>" },
+                                    { id: "ds_dl_autoencoders", title: "Autoencoders (Introduction)", shortDesc: "Unsupervised learning, dimensionality reduction, anomaly detection.", fullContent: "<p>Neural networks used for unsupervised learning, particularly for dimensionality reduction and feature learning. Encoder-decoder architecture. Applications in anomaly detection and data denoising.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "4.4. Natural Language Processing (NLP)",
+                                subModuleIcon: "fas fa-language",
+                                topics: [
+                                    { id: "ds_nlp_text_preprocessing", title: "Text Preprocessing", shortDesc: "Tokenization, stemming, lemmatization, stop words.", fullContent: "<p>Preparing text data for ML models. Tokenization (word, sentence), lowercasing, stop word removal, stemming, lemmatization. Libraries like NLTK, spaCy.</p>" },
+                                    { id: "ds_nlp_feature_extraction_text", title: "Text Feature Extraction", shortDesc: "Bag-of-Words, TF-IDF, Word Embeddings (Word2Vec, GloVe, FastText).", fullContent: "<p>Converting text into numerical representations. Bag-of-Words (BoW), Term Frequency-Inverse Document Frequency (TF-IDF). Introduction to Word Embeddings: Word2Vec, GloVe, FastText. Contextual embeddings (ELMo, BERT - conceptual).</p>" },
+                                    { id: "ds_nlp_sentiment_analysis", title: "Sentiment Analysis", shortDesc: "Classifying text emotion/opinion.", fullContent: "<p>Determining the sentiment (positive, negative, neutral) expressed in a piece of text. Lexicon-based and ML-based approaches.</p>" },
+                                    { id: "ds_nlp_topic_modeling", title: "Topic Modeling (LDA)", shortDesc: "Discovering latent topics in text.", fullContent: "<p>Unsupervised technique to discover abstract topics within a collection of documents. Latent Dirichlet Allocation (LDA) is a common algorithm.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "5. MLOps & Productionization",
+                        moduleIcon: "fas fa-rocket",
+                        subModules: [
+                            {
+                                subModuleTitle: "5.1. Version Control for ML",
+                                subModuleIcon: "fas fa-code-branch",
+                                topics: [
+                                    { id: "ds_mlops_git", title: "Git & GitHub/GitLab for DS", shortDesc: "Code versioning, collaboration, branching strategies.", fullContent: "<p>Mastering Git for versioning code, ML experiments, and configuration files. Effective use of GitHub/GitLab for collaboration. Branching strategies like GitFlow (adapted for ML).</p>" },
+                                    { id: "ds_mlops_dvc", title: "Data Version Control (DVC)", shortDesc: "Versioning large datasets and models.", fullContent: "<p>Tools like DVC for versioning large data files and ML models that don't fit well in Git. Reproducibility of experiments.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.2. Experiment Tracking & Management",
+                                subModuleIcon: "fas fa-clipboard-list",
+                                topics: [
+                                    { id: "ds_mlops_mlflow_wandb", title: "MLflow / Weights & Biases (W&B)", shortDesc: "Logging parameters, metrics, artifacts.", fullContent: "<p>Tools for tracking ML experiments: logging hyperparameters, code versions, metrics, and model artifacts. Comparing runs and managing the ML lifecycle.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.3. Model Deployment Strategies",
+                                subModuleIcon: "fas fa-server",
+                                topics: [
+                                    { id: "ds_mlops_docker", title: "Containerization (Docker)", shortDesc: "Packaging models and dependencies.", fullContent: "<p>Using Docker to create reproducible environments for ML models, packaging the model, dependencies, and serving code into containers.</p>" },
+                                    { id: "ds_mlops_api_flask_fastapi", title: "Building Model APIs (Flask/FastAPI)", shortDesc: "Exposing models as RESTful services.", fullContent: "<p>Developing REST APIs to serve model predictions using frameworks like Flask or FastAPI. Handling requests, preprocessing input, inference, postprocessing output.</p>" },
+                                    { id: "ds_mlops_serving_patterns", title: "Model Serving Patterns", shortDesc: "Batch vs. Real-time, Serverless.", fullContent: "<p>Understanding different ways to serve models: Batch inference (offline), Real-time inference (online via APIs). Introduction to serverless deployment options for ML models.</p>" },
+                                    { id: "ds_mlops_cloud_platforms_deploy", title: "Cloud ML Deployment (AWS SageMaker, GCP Vertex AI, Azure ML)", shortDesc: "Leveraging cloud services for deployment.", fullContent: "<p>Using managed services from cloud providers (AWS, GCP, Azure) for model deployment, scaling, and management.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.4. Model Monitoring & Maintenance",
+                                subModuleIcon: "fas fa-desktop",
+                                topics: [
+                                    { id: "ds_mlops_monitoring_drift", title: "Monitoring Data & Concept Drift", shortDesc: "Detecting changes in input data and model performance.", fullContent: "<p>Setting up systems to monitor for data drift (changes in input data distribution) and concept drift (changes in the relationship between input and output). Retraining triggers.</p>" },
+                                    { id: "ds_mlops_monitoring_performance", title: "Monitoring Model Performance", shortDesc: "Tracking key metrics, logging, alerting.", fullContent: "<p>Continuously tracking model performance metrics in production. Setting up logging for predictions and errors. Alerting mechanisms for performance degradation or system issues.</p>" },
+                                    { id: "ds_mlops_retraining", title: "Automated Retraining Pipelines", shortDesc: "Setting up CI/CD for ML models.", fullContent: "<p>Designing and implementing CI/CD/CT (Continuous Integration/Continuous Delivery/Continuous Training) pipelines for automated model retraining, testing, and redeployment.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "6. Big Data Technologies for Data Science",
+                        moduleIcon: "fas fa-hdd", // Changed icon
+                        subModules: [
+                            {
+                                subModuleTitle: "6.1. Distributed Computing Concepts",
+                                subModuleIcon: "fas fa-network-wired", // Changed icon
+                                topics: [
+                                    { id: "ds_bigdata_hadoop_ecosystem", title: "Hadoop Ecosystem Overview (HDFS, MapReduce, YARN)", shortDesc: "Fundamentals of distributed storage and processing.", fullContent: "<p>Understanding the core components of Hadoop: HDFS for distributed storage, MapReduce for distributed processing paradigm, and YARN for resource management.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "6.2. Apache Spark",
+                                subModuleIcon: "fas fa-fire",
+                                topics: [
+                                    { id: "ds_bigdata_spark_core", title: "Spark Core & RDDs", shortDesc: "Resilient Distributed Datasets, transformations, actions.", fullContent: "<p>Understanding Spark's core abstraction: RDDs. Transformations (map, filter, etc.) and Actions (collect, count, etc.). Lazy evaluation.</p>" },
+                                    { id: "ds_bigdata_spark_sql_df", title: "Spark SQL & DataFrames", shortDesc: "Distributed SQL queries, working with structured data.", fullContent: "<p>Using Spark SQL to query structured data. Working with Spark DataFrames, which provide a higher-level API similar to Pandas but for distributed data.</p>" },
+                                    { id: "ds_bigdata_spark_mllib", title: "Spark MLlib", shortDesc: "Scalable machine learning library.", fullContent: "<p>Using Spark's MLlib for distributed machine learning. Common algorithms (regression, classification, clustering) adapted for Spark. Feature transformers and pipelines.</p>" }
+                                ]
+                            },
+                             {
+                                subModuleTitle: "6.3. Distributed Data Storage & Querying",
+                                subModuleIcon: "fas fa-database",
+                                topics: [
+                                    { id: "ds_bigdata_hive_impala", title: "Hive / Impala (Conceptual)", shortDesc: "SQL-on-Hadoop.", fullContent: "<p>Understanding tools like Apache Hive (data warehousing on Hadoop, uses MapReduce or Tez) and Impala (MPP query engine for Hadoop) for querying large datasets stored in HDFS using SQL-like syntax.</p>" },
+                                    { id: "ds_bigdata_nosql_scale", title: "NoSQL Databases at Scale (e.g., Cassandra, HBase)", shortDesc: "Distributed NoSQL for large scale applications.", fullContent: "<p>Conceptual understanding of how NoSQL databases like Cassandra (column-family) or HBase (column-family, built on HDFS) handle massive amounts of data and provide high availability and scalability.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "7. Communication, Ethics & Advanced Topics",
+                        moduleIcon: "fas fa-globe-americas",
+                        subModules: [
+                            {
+                                subModuleTitle: "7.1. Storytelling & Visualization Mastery",
+                                subModuleIcon: "fas fa-comments",
+                                topics: [
+                                    { id: "ds_comm_advanced_viz", title: "Advanced Data Visualization & Storytelling", shortDesc: "Crafting compelling narratives, dashboard design.", fullContent: "<p>Moving beyond basic charts. Designing effective dashboards (e.g., using Tableau, Power BI, or Python Dash). Techniques for creating clear, impactful narratives that drive action. Tailoring communication to different audiences (technical vs. non-technical).</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "7.2. ML Ethics & Responsible AI",
+                                subModuleIcon: "fas fa-balance-scale",
+                                topics: [
+                                    { id: "ds_ethics_bias_fairness", title: "Bias & Fairness in ML", shortDesc: "Identifying and mitigating bias, fairness metrics.", fullContent: "<p>Understanding sources of bias in data and algorithms. Fairness metrics and techniques for bias mitigation. Ethical implications of biased models.</p>" },
+                                    { id: "ds_ethics_explainability_interpretability", title: "Explainable AI (XAI) & Interpretability", shortDesc: "LIME, SHAP, model-specific methods.", fullContent: "<p>Techniques to understand and explain model predictions. Model-agnostic methods like LIME (Local Interpretable Model-agnostic Explanations) and SHAP (SHapley Additive exPlanations). Importance for trust and debugging.</p>" },
+                                    { id: "ds_ethics_privacy", title: "Privacy-Preserving ML", shortDesc: "Differential privacy, federated learning (conceptual).", fullContent: "<p>Introduction to techniques that allow model training while preserving the privacy of individual data points. Conceptual overview of differential privacy and federated learning.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "7.3. ML System Design (Introduction)",
+                                subModuleIcon: "fas fa-sitemap",
+                                topics: [
+                                    { id: "ds_sysdesign_overview", title: "ML System Design Principles", shortDesc: "Scalability, reliability, maintainability for ML systems.", fullContent: "<p>Applying software system design principles to ML systems. Thinking about scalability, reliability, latency, throughput, and maintainability of ML applications in production. Common design patterns for ML systems.</p>" },
+                                    { id: "ds_sysdesign_case_studies", title: "Case Studies (e.g., Recommender System, Fraud Detection)", shortDesc: "Designing end-to-end ML systems for specific problems.", fullContent: "<p>Working through case studies to design ML systems. Example: Designing a recommendation system – data collection, feature engineering, model selection, deployment, A/B testing, monitoring. Designing a fraud detection system.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "7.4. Advanced & Specialized Areas (Exploratory)",
+                                subModuleIcon: "fas fa-microscope",
+                                topics: [
+                                    { id: "ds_adv_reinforcement_learning", title: "Reinforcement Learning (Intro)", shortDesc: "Agents, environments, rewards, policies.", fullContent: "<p>Conceptual introduction to Reinforcement Learning: agents interacting with an environment to maximize a cumulative reward. Key concepts: states, actions, rewards, policies. Q-Learning (basic idea).</p>" },
+                                    { id: "ds_adv_graph_ml", title: "Graph Machine Learning (Intro)", shortDesc: "Graph Neural Networks (GNNs), node/link prediction.", fullContent: "<p>Introduction to applying ML techniques to graph-structured data. Node classification, link prediction, graph classification. Conceptual overview of Graph Neural Networks (GNNs).</p>" },
+                                    { id: "ds_adv_causal_inference", title: "Causal Inference (Intro)", shortDesc: "Distinguishing correlation from causation.", fullContent: "<p>Introduction to methods for inferring causal relationships from observational data. Importance in decision-making. Concepts like A/B testing, propensity score matching (overview).</p>" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            // ... Data Engineering and MLOps objects will go here later ...
+            dataEngineering: {
+                domainTitle: "Data Engineering Roadmap",
+                domainIcon: "fas fa-cogs",
+                domainDescription: "A comprehensive guide for Data Engineers, focusing on designing, building, and maintaining scalable data pipelines, robust data storage solutions, and efficient data processing systems.",
+                modules: [
+                    {
+                        moduleTitle: "1. Programming & Software Engineering Foundations",
+                        moduleIcon: "fas fa-code-branch", // Changed Icon
+                        subModules: [
+                            {
+                                subModuleTitle: "1.1. Core Programming Languages",
+                                subModuleIcon: "fas fa-laptop-code", // Changed Icon
+                                topics: [
+                                    {
+                                        id: "de_prog_python", title: "Python for Data Engineering",
+                                        shortDesc: "Scripting, data structures, APIs, libraries (Pandas, Requests).",
+                                        fullContent: `
+                                            <h4>Why Python?</h4>
+                                            <p>Python is the dominant language in data engineering due to its versatility, extensive libraries, and ease of use for scripting, automation, and data manipulation.</p>
+                                            <h4>Key Areas:</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Fundamentals:</span> Data types, control flow, functions, modules, error handling.</li>
+                                                <li><span class='highlight'>Data Structures:</span> Advanced use of lists, dictionaries, sets, tuples.</li>
+                                                <li><span class='highlight'>Object-Oriented Programming (OOP):</span> Classes, inheritance for building reusable components.</li>
+                                                <li><span class='highlight'>File I/O:</span> Reading/writing various formats (CSV, JSON, Parquet, Avro).</li>
+                                                <li><span class='highlight'>Working with APIs:</span> Using <code>requests</code> library to interact with RESTful APIs.</li>
+                                                <li><span class='highlight'>Essential Libraries:</span>
+                                                    <ul>
+                                                        <li><code>Pandas</code>: For data manipulation and analysis (often used for smaller datasets or transformations within pipelines).</li>
+                                                        <li><code>NumPy</code>: For numerical operations (less direct use, but underlies Pandas).</li>
+                                                        <li>Libraries for specific data sources (e.g., <code>boto3</code> for AWS, <code>google-cloud-storage</code> for GCP).</li>
+                                                    </ul>
+                                                </li>
+                                                <li><span class='highlight'>Concurrency & Parallelism:</span> Basics of <code>multithreading</code>, <code>multiprocessing</code>, <code>asyncio</code> for I/O-bound tasks.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "de_prog_jvm", title: "JVM Languages (Java/Scala - for Big Data)",
+                                        shortDesc: "Fundamentals for Spark, Flink, Kafka.",
+                                        fullContent: `
+                                            <h4>Why JVM?</h4>
+                                            <p>Many big data frameworks like Apache Spark, Flink, and Kafka are built on the JVM, making Java or Scala valuable.</p>
+                                            <h4>Java:</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Core Concepts:</span> Syntax, OOP, data structures, collections framework.</li>
+                                                <li><span class='highlight'>Build Tools:</span> Maven, Gradle.</li>
+                                                <li>Understanding JVM basics (memory management, garbage collection).</li>
+                                            </ul>
+                                            <h4>Scala:</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Functional & OOP Paradigm:</span> Immutability, case classes, pattern matching, higher-order functions.</li>
+                                                <li><span class='highlight'>Conciseness:</span> Often preferred for Spark development due to its expressive syntax.</li>
+                                                <li><span class='highlight'>Build Tools:</span> SBT.</li>
+                                            </ul>
+                                            <p><em>Focus on one initially (Python is primary), then gain familiarity with Java/Scala as needed for specific tools.</em></p>`
+                                    },
+                                    {
+                                        id: "de_prog_shell", title: "Shell Scripting (Bash)",
+                                        shortDesc: "Automation, system administration tasks.",
+                                        fullContent: `
+                                            <h4>Command-Line Proficiency</h4>
+                                            <p>Essential for interacting with operating systems, automating tasks, and managing infrastructure.</p>
+                                            <ul>
+                                                <li><span class='highlight'>Basic Commands:</span> <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>grep</code>, <code>awk</code>, <code>sed</code>.</li>
+                                                <li><span class='highlight'>Pipes & Redirection.</span></li>
+                                                <li><span class='highlight'>Writing Scripts:</span> Variables, loops, conditional statements.</li>
+                                                <li><span class='highlight'>Permissions & File System Navigation.</span></li>
+                                                <li><span class='highlight'>Environment Variables.</span></li>
+                                            </ul>`
+                                    }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "1.2. Software Engineering Best Practices",
+                                subModuleIcon: "fas fa-shield-alt", // Changed Icon
+                                topics: [
+                                    {
+                                        id: "de_swe_version_control_git", title: "Version Control (Git & GitHub/GitLab)",
+                                        shortDesc: "Branching, merging, pull requests, collaboration.",
+                                        fullContent: `
+                                            <h4>Essential for Collaboration & Reproducibility</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Core Git Concepts:</span> Repositories, commits, branches, merging, rebasing.</li>
+                                                <li><span class='highlight'>Branching Strategies:</span> GitFlow, GitHub Flow. Importance for managing features and releases.</li>
+                                                <li><span class='highlight'>Collaboration:</span> Pull Requests (PRs) / Merge Requests (MRs), code reviews.</li>
+                                                <li><span class='highlight'>Handling Merge Conflicts.</span></li>
+                                                <li>Using <code>.gitignore</code> effectively.</li>
+                                                <li>Tagging releases.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "de_swe_testing", title: "Testing & Code Quality",
+                                        shortDesc: "Unit tests, integration tests, data validation.",
+                                        fullContent: `
+                                            <h4>Ensuring Robust & Reliable Code</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Unit Testing:</span> Testing individual functions/modules (e.g., using Python's <code>unittest</code> or <code>pytest</code>).</li>
+                                                <li><span class='highlight'>Integration Testing:</span> Testing interactions between components of a data pipeline.</li>
+                                                <li><span class='highlight'>Data Quality Testing:</span> Validating data integrity, accuracy, completeness at various stages of the pipeline (e.g., using tools like Great Expectations, Deequ).</li>
+                                                <li><span class='highlight'>Test-Driven Development (TDD) - Conceptual Understanding.</span></li>
+                                                <li><span class='highlight'>Code Linting & Formatting:</span> Tools like Flake8, Black, Pylint for Python.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "de_swe_cicd", title: "CI/CD (Continuous Integration/Continuous Delivery)",
+                                        shortDesc: "Automating builds, tests, and deployments (Jenkins, GitLab CI, GitHub Actions).",
+                                        fullContent: `
+                                            <h4>Automating the Development Lifecycle</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Continuous Integration:</span> Automatically building and testing code changes.</li>
+                                                <li><span class='highlight'>Continuous Delivery/Deployment:</span> Automating the release of software to staging/production.</li>
+                                                <li><span class='highlight'>Tools:</span>
+                                                    <ul>
+                                                        <li>Jenkins: Widely used open-source automation server.</li>
+                                                        <li>GitLab CI/CD: Integrated CI/CD with GitLab.</li>
+                                                        <li>GitHub Actions: CI/CD integrated with GitHub.</li>
+                                                        <li>Cloud-specific tools (AWS CodePipeline, Azure DevOps, GCP Cloud Build).</li>
+                                                    </ul>
+                                                </li>
+                                                <li>Building CI/CD pipelines for data applications.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "de_swe_design_patterns", title: "Software Design Patterns (Basic)",
+                                        shortDesc: "Understanding reusable solutions to common problems.",
+                                        fullContent: `
+                                            <h4>Building Maintainable Software</h4>
+                                            <p>While not as heavy as in pure software engineering, understanding some basic patterns is beneficial.</p>
+                                            <ul>
+                                                <li><span class='highlight'>Factory Pattern:</span> For creating objects.</li>
+                                                <li><span class='highlight'>Singleton Pattern:</span> Ensuring a class has only one instance.</li>
+                                                <li><span class='highlight'>Observer Pattern:</span> For event handling.</li>
+                                                <li>Focus on principles like DRY (Don't Repeat Yourself), KISS (Keep It Simple, Stupid), SOLID (conceptual understanding).</li>
+                                            </ul>`
+                                    }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "1.3. Operating Systems & Networking Basics",
+                                subModuleIcon: "fas fa-server",
+                                topics: [
+                                    {
+                                        id: "de_os_linux", title: "Linux Fundamentals",
+                                        shortDesc: "Command line, file system, processes, permissions.",
+                                        fullContent: `
+                                            <h4>Understanding the Foundation</h4>
+                                            <p>Most data infrastructure runs on Linux.</p>
+                                            <ul>
+                                                <li><span class='highlight'>File System Hierarchy.</span></li>
+                                                <li><span class='highlight'>Process Management:</span> <code>ps</code>, <code>top</code>, <code>kill</code>.</li>
+                                                <li><span class='highlight'>User & Group Management, Permissions.</span></li>
+                                                <li><span class='highlight'>Package Management:</span> <code>apt</code>, <code>yum</code>.</li>
+                                                <li><span class='highlight'>Basic System Monitoring.</span></li>
+                                                <li><span class='highlight'>SSH & Remote Access.</span></li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "de_networking_basics", title: "Networking Concepts",
+                                        shortDesc: "IP addressing, DNS, TCP/IP, HTTP, Firewalls.",
+                                        fullContent: `
+                                            <h4>Understanding Data Movement</h4>
+                                            <ul>
+                                                <li><span class='highlight'>TCP/IP Model:</span> Layers and their functions.</li>
+                                                <li><span class='highlight'>IP Addressing (IPv4, IPv6) & Subnetting.</span></li>
+                                                <li><span class='highlight'>DNS (Domain Name System).</span></li>
+                                                <li><span class='highlight'>HTTP/HTTPS Protocols.</span></li>
+                                                <li><span class='highlight'>Ports & Sockets.</span></li>
+                                                <li><span class='highlight'>Firewalls & Basic Security Concepts.</span></li>
+                                                <li>Understanding network latency and bandwidth.</li>
+                                            </ul>`
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "2. Data Storage & Management",
+                        moduleIcon: "fas fa-database",
+                        subModules: [
+                            {
+                                subModuleTitle: "2.1. Relational Databases (SQL)",
+                                subModuleIcon: "fas fa-table",
+                                topics: [
+                                    { id: "de_db_sql_fundamentals", title: "SQL Fundamentals (DDL, DML, DCL, TCL)", shortDesc: "SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER.", fullContent: "<p>Comprehensive understanding of SQL. Data Definition Language (CREATE, ALTER, DROP), Data Manipulation Language (SELECT, INSERT, UPDATE, DELETE), Data Control Language (GRANT, REVOKE), Transaction Control Language (COMMIT, ROLLBACK).</p>" },
+                                    { id: "de_db_sql_advanced", title: "Advanced SQL", shortDesc: "Joins, subqueries, CTEs, window functions, indexing.", fullContent: "<p>Mastery of JOIN types, complex subqueries, Common Table Expressions (CTEs). Advanced window functions (RANK, DENSE_RANK, ROW_NUMBER, LEAD, LAG). Database indexing strategies (B-trees, hash indexes) and query optimization. Stored procedures, triggers, views (conceptual).</p>" },
+                                    { id: "de_db_rdbms_types", title: "RDBMS Technologies (PostgreSQL, MySQL)", shortDesc: "Understanding specific database systems.", fullContent: "<p>Deep dive into popular RDBMS like PostgreSQL (features, data types, extensions) and MySQL. Understanding their architectures, pros, and cons for different use cases.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.2. NoSQL Databases",
+                                subModuleIcon: "fas fa-leaf",
+                                topics: [
+                                    { id: "de_db_nosql_overview", title: "NoSQL Concepts & CAP Theorem", shortDesc: "Types (Key-Value, Document, Column-Family, Graph), BASE properties.", fullContent: "<p>Understanding motivations for NoSQL. CAP Theorem (Consistency, Availability, Partition tolerance) and its implications. BASE properties (Basically Available, Soft state, Eventually consistent).</p>" },
+                                    { id: "de_db_nosql_keyvalue", title: "Key-Value Stores (Redis, Memcached)", shortDesc: "Caching, session management.", fullContent: "<p>Use cases like caching, session storage. Understanding Redis data structures and persistence. Memcached for simple caching.</p>" },
+                                    { id: "de_db_nosql_document", title: "Document Databases (MongoDB, Couchbase)", shortDesc: "Flexible schema, JSON/BSON documents.", fullContent: "<p>Storing and querying JSON-like documents. MongoDB (query language, indexing, aggregation framework). Use cases for unstructured or semi-structured data.</p>" },
+                                    { id: "de_db_nosql_columnfamily", title: "Column-Family Databases (Cassandra, HBase)", shortDesc: "Wide-column stores, high scalability for writes.", fullContent: "<p>Designed for massive scalability and write-heavy workloads. Cassandra (architecture, data modeling). HBase (built on HDFS).</p>" },
+                                    { id: "de_db_nosql_graph", title: "Graph Databases (Neo4j, JanusGraph) - Conceptual", shortDesc: "Storing and querying graph-structured data.", fullContent: "<p>Conceptual understanding of graph databases for modeling relationships. Nodes, edges, properties. Query languages like Cypher (Neo4j). Use cases: social networks, recommendation engines.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.3. Data Warehousing",
+                                subModuleIcon: "fas fa-warehouse",
+                                topics: [
+                                    { id: "de_dwh_concepts", title: "Data Warehousing Concepts", shortDesc: "OLAP vs OLTP, Star/Snowflake schemas, SCDs.", fullContent: "<p>Differences between Online Transaction Processing (OLTP) and Online Analytical Processing (OLAP). Data modeling for analytics: Star Schema, Snowflake Schema. Facts and Dimensions. Slowly Changing Dimensions (SCDs - Type 1, 2, 3).</p>" },
+                                    { id: "de_dwh_etl_elt", title: "ETL (Extract, Transform, Load) vs ELT", shortDesc: "Data integration patterns.", fullContent: "<p>Understanding the traditional ETL process. Rise of ELT (Extract, Load, Transform) with modern cloud data warehouses where transformations happen in the warehouse itself.</p>" },
+                                    { id: "de_dwh_cloud_platforms", title: "Cloud Data Warehouses (Snowflake, Redshift, BigQuery, Synapse)", shortDesc: "Features, architecture, best practices.", fullContent: "<p>Deep dive into major cloud data warehouse platforms. Understanding their architectures (e.g., separation of storage and compute in Snowflake, MPP architecture in Redshift). Data loading, querying, performance tuning, cost optimization on these platforms.</p>" },
+                                    { id: "de_dwh_datalake", title: "Data Lakes & Lakehouse Architecture", shortDesc: "Storing raw data, combining data lakes and warehouses.", fullContent: "<p>Concept of a Data Lake for storing vast amounts of raw data in various formats. The Lakehouse architecture paradigm (e.g., using Delta Lake, Apache Iceberg, Apache Hudi) bringing data warehousing capabilities (ACID transactions, schema enforcement) to data lakes.</p>" }
+                                ]
+                            },
+                             {
+                                subModuleTitle: "2.4. Data File Formats & Serialization",
+                                subModuleIcon: "fas fa-file-alt",
+                                topics: [
+                                    { id: "de_formats_row_col", title: "Row-oriented vs. Columnar Formats", shortDesc: "CSV, JSON vs. Parquet, ORC.", fullContent: "<p>Understanding the difference: Row-oriented (CSV, JSON, Avro - good for transactional writes) vs. Columnar (Parquet, ORC - good for analytical queries, better compression, predicate pushdown).</p>" },
+                                    { id: "de_formats_parquet_orc_avro", title: "Apache Parquet, ORC, Avro", shortDesc: "Features, use cases, schema evolution.", fullContent: "<p><strong>Parquet:</strong> Columnar format, efficient for analytics, supports schema evolution, good compression. <br><strong>ORC (Optimized Row Columnar):</strong> Another columnar format, strong in Hive ecosystem. <br><strong>Avro:</strong> Row-based format, good for schema evolution, often used in Kafka and data ingestion pipelines.</p>" },
+                                    { id: "de_formats_serialization", title: "Data Serialization (Protocol Buffers, Apache Thrift) - Conceptual", shortDesc: "Efficient data exchange.", fullContent: "<p>Conceptual understanding of serialization frameworks for efficient, cross-language data exchange, especially in distributed systems. Schema definition and code generation.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "3. Big Data Processing Frameworks",
+                        moduleIcon: "fas fa-project-diagram", // Changed icon
+                        subModules: [
+                            {
+                                subModuleTitle: "3.1. Batch Processing",
+                                subModuleIcon: "fas fa-history", // Changed icon
+                                topics: [
+                                    { id: "de_batch_hadoop_mapreduce", title: "Hadoop MapReduce (Conceptual)", shortDesc: "Fundamentals of distributed batch processing.", fullContent: "<p>Understanding the original paradigm for distributed processing on Hadoop. Mapper and Reducer phases. Limitations (I/O intensive, verbose). Mostly superseded by Spark but foundational knowledge is good.</p>" },
+                                    { id: "de_batch_spark_core", title: "Apache Spark Core", shortDesc: "RDDs, transformations, actions, lazy evaluation, DAGs.", fullContent: "<p>Deep dive into Spark's Resilient Distributed Datasets (RDDs). Transformations (narrow vs. wide), Actions. Lazy evaluation and Directed Acyclic Graphs (DAGs). Spark execution model (Driver, Executors). Shared variables (Broadcast variables, Accumulators).</p>" },
+                                    { id: "de_batch_spark_sql_df", title: "Spark SQL & DataFrames/Datasets", shortDesc: "Structured data processing, Catalyst optimizer, Tungsten.", fullContent: "<p>Using Spark DataFrames and Datasets API for structured and semi-structured data processing. Catalyst optimizer and Tungsten execution engine for performance. Reading from/writing to various data sources. User Defined Functions (UDFs).</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.2. Stream Processing",
+                                subModuleIcon: "fas fa-water", // Changed icon
+                                topics: [
+                                    { id: "de_stream_concepts", title: "Stream Processing Concepts", shortDesc: "Event time vs. processing time, windowing, state management.", fullContent: "<p>Key concepts in stream processing: Event Time vs. Processing Time. Tumbling, Sliding, Session Windows. Watermarking for handling late data. Stateful stream processing.</p>" },
+                                    { id: "de_stream_kafka", title: "Apache Kafka", shortDesc: "Distributed messaging queue, topics, partitions, producers, consumers.", fullContent: "<p>Core concepts of Kafka as a distributed, fault-tolerant, high-throughput messaging system. Topics, Partitions, Brokers, Producers, Consumers, Consumer Groups. Kafka Connect and Kafka Streams (conceptual).</p>" },
+                                    { id: "de_stream_spark_structured_streaming", title: "Spark Structured Streaming", shortDesc: "Stream processing using DataFrame API.", fullContent: "<p>Building continuous applications using Spark's DataFrame/Dataset API. Micro-batch processing model. Input/output sources and sinks. Windowing operations. Checkpointing for fault tolerance.</p>" },
+                                    { id: "de_stream_flink", title: "Apache Flink (Conceptual/Advanced)", shortDesc: "True stream processing, event time processing, stateful computations.", fullContent: "<p>Conceptual understanding of Flink as a powerful stream processing engine known for true event-time processing and sophisticated state management. DataStream API. Comparison with Spark Streaming.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.3. Distributed Resource Management",
+                                subModuleIcon: "fas fa-tasks",
+                                topics: [
+                                    { id: "de_dist_yarn", title: "Apache YARN (Yet Another Resource Negotiator)", shortDesc: "Resource manager for Hadoop ecosystem.", fullContent: "<p>Understanding YARN's role in managing resources (CPU, memory) and scheduling applications (MapReduce, Spark, Flink) across a Hadoop cluster. ResourceManager, NodeManager, ApplicationMaster.</p>" },
+                                    { id: "de_dist_kubernetes_basics_de", title: "Kubernetes (Basics for Data Workloads)", shortDesc: "Orchestrating containerized data applications.", fullContent: "<p>Basic understanding of Kubernetes (Pods, Services, Deployments, StatefulSets) and how it's increasingly used to run data processing frameworks like Spark and Flink, and to manage data services.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "4. Data Pipelines & Orchestration",
+                        moduleIcon: "fas fa-sitemap",
+                        subModules: [
+                            {
+                                subModuleTitle: "4.1. Workflow Orchestration",
+                                subModuleIcon: "fas fa-calendar-alt", // Changed icon
+                                topics: [
+                                    { id: "de_orchestration_airflow", title: "Apache Airflow", shortDesc: "Defining, scheduling, and monitoring workflows as DAGs.", fullContent: "<p>Deep dive into Airflow. Writing DAGs in Python. Operators, Sensors, Hooks, Executors (Local, Celery, Kubernetes). Scheduling, task dependencies, backfilling, monitoring workflows via UI. Best practices for Airflow DAG design.</p>" },
+                                    { id: "de_orchestration_alternatives", title: "Alternatives (Prefect, Dagster, Luigi) - Conceptual", shortDesc: "Understanding other workflow management tools.", fullContent: "<p>Brief overview of other popular workflow orchestration tools like Prefect (Python-native, dynamic DAGs), Dagster (data-aware orchestrator), and Luigi (Spotify's Python package).</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "4.2. Data Ingestion & Integration",
+                                subModuleIcon: "fas fa-download", // Changed Icon
+                                topics: [
+                                    { id: "de_ingestion_tools_sqoop_nifi", title: "Data Ingestion Tools (Apache Sqoop, NiFi) - Conceptual/Use-case based", shortDesc: "Moving data between RDBMS/Mainframes and Hadoop/Data Lakes.", fullContent: "<p><strong>Apache Sqoop:</strong> For efficiently transferring bulk data between Apache Hadoop and structured datastores such as relational databases.<br><strong>Apache NiFi:</strong> For automating the flow of data between software systems. Visual interface for designing data flows.</p>" },
+                                    { id: "de_ingestion_cdc", title: "Change Data Capture (CDC)", shortDesc: "Capturing and propagating data changes (Debezium, Kafka Connect).", fullContent: "<p>Techniques for capturing row-level changes (inserts, updates, deletes) in source databases and replicating them to downstream systems in real-time or near real-time. Tools like Debezium, often used with Kafka Connect.</p>" },
+                                     { id: "de_ingestion_api_batch", title: "Building Batch & Real-time Ingestion Pipelines", shortDesc: "Designing robust ingestion systems.", fullContent: "<p>Principles for designing scalable and reliable data ingestion pipelines for both batch (e.g., daily loads from APIs or files) and real-time (e.g., streaming from Kafka) sources. Handling errors, retries, idempotency.</p>" }
+                                ]
+                            },
+                             {
+                                subModuleTitle: "4.3. Data Quality & Validation",
+                                subModuleIcon: "fas fa-check-double",
+                                topics: [
+                                    { id: "de_quality_frameworks", title: "Data Quality Frameworks (Great Expectations, Deequ)", shortDesc: "Defining and validating data expectations.", fullContent: "<p>Using tools to define, validate, and monitor data quality. <br><strong>Great Expectations:</strong> Python library for data validation, documentation, and profiling.<br><strong>Deequ (for Spark):</strong> Library built on Apache Spark for defining and verifying data quality constraints on large datasets.</p>" },
+                                    { id: "de_quality_monitoring", title: "Data Quality Monitoring & Alerting", shortDesc: "Setting up checks and alerts for data issues.", fullContent: "<p>Implementing continuous monitoring of data quality metrics. Setting up alerts for data anomalies, schema changes, or constraint violations. Integrating data quality checks into CI/CD pipelines.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "5. Cloud Platforms & DevOps for Data",
+                        moduleIcon: "fas fa-cloud",
+                        subModules: [
+                            {
+                                subModuleTitle: "5.1. Cloud Provider Services (AWS, GCP, Azure)",
+                                subModuleIcon: "fab fa-aws", // Generic cloud
+                                topics: [
+                                    { id: "de_cloud_storage", title: "Cloud Storage (S3, GCS, Azure Blob Storage)", shortDesc: "Scalable object storage.", fullContent: "<p>Understanding and using cloud object storage services. Concepts like buckets, objects, storage classes, lifecycle policies, versioning, access control (IAM).</p>" },
+                                    { id: "de_cloud_compute", title: "Cloud Compute (EC2, GCE, Azure VMs)", shortDesc: "Virtual machines for custom workloads.", fullContent: "<p>Provisioning and managing virtual machines in the cloud. Instance types, AMIs/images, networking, storage options. Use cases for running custom data processing jobs or databases.</p>" },
+                                    { id: "de_cloud_managed_db", title: "Managed Database Services (RDS, Cloud SQL, Azure SQL DB)", shortDesc: "Managed relational and NoSQL databases.", fullContent: "<p>Using managed database services for RDBMS (e.g., AWS RDS, GCP Cloud SQL, Azure SQL Database) and NoSQL (e.g., AWS DynamoDB, GCP Firestore/Bigtable, Azure Cosmos DB). Benefits: automated backups, patching, scaling.</p>" },
+                                    { id: "de_cloud_managed_dp", title: "Managed Data Processing Services (EMR, Dataproc, Databricks, HDInsight, Synapse Analytics)", shortDesc: "Managed Spark, Hadoop, data warehousing.", fullContent: "<p>Using managed services for big data processing and analytics. <br><strong>AWS:</strong> EMR (Managed Hadoop/Spark), Redshift, Glue, Kinesis. <br><strong>GCP:</strong> Dataproc (Managed Hadoop/Spark), BigQuery, Dataflow. <br><strong>Azure:</strong> HDInsight, Synapse Analytics, Data Factory. <br><strong>Databricks (Cloud-agnostic):</strong> Unified analytics platform based on Spark.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.2. Infrastructure as Code (IaC)",
+                                subModuleIcon: "fas fa-cogs", // Changed icon
+                                topics: [
+                                    { id: "de_iac_terraform", title: "Terraform", shortDesc: "Defining and provisioning infrastructure using code.", fullContent: "<p>Using Terraform to define and manage cloud infrastructure (networks, VMs, databases, storage) declaratively. Providers, resources, modules, state management. Benefits: automation, repeatability, version control of infrastructure.</p>" },
+                                    { id: "de_iac_cloudformation_arm", title: "Cloud-specific IaC (CloudFormation, ARM Templates) - Conceptual", shortDesc: "AWS CloudFormation, Azure Resource Manager.", fullContent: "<p>Conceptual understanding of cloud provider-specific IaC tools like AWS CloudFormation and Azure Resource Manager (ARM) Templates.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.3. Containerization & Orchestration for DE",
+                                subModuleIcon: "fab fa-docker",
+                                topics: [
+                                    { id: "de_containers_docker_deep", title: "Docker Deep Dive", shortDesc: "Building efficient Docker images for data apps, Docker Compose.", fullContent: "<p>Advanced Docker usage for data engineering. Optimizing Dockerfiles for smaller image sizes and faster builds. Multi-stage builds. Using Docker Compose for defining and running multi-container local development environments.</p>" },
+                                    { id: "de_containers_kubernetes_de", title: "Kubernetes for Data Engineers", shortDesc: "Deploying and managing data workloads (Spark on K8s, Airflow on K8s).", fullContent: "<p>Understanding how to run stateful data applications and data processing frameworks like Spark on Kubernetes. Kubernetes Operators for managing complex applications (e.g., Spark Operator, Kafka Operator). Persistent storage (PersistentVolumes, PersistentVolumeClaims).</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.4. Monitoring, Logging & Alerting for Data Systems",
+                                subModuleIcon: "fas fa-tachometer-alt", // Changed Icon
+                                topics: [
+                                    { id: "de_monitoring_tools", title: "Monitoring Tools (Prometheus, Grafana, CloudWatch, Stackdriver)", shortDesc: "Collecting metrics and visualizing system health.", fullContent: "<p>Using tools to monitor data infrastructure and pipelines. <br><strong>Prometheus:</strong> Open-source monitoring system with a time series database. <br><strong>Grafana:</strong> Open-source platform for analytics and interactive visualization (often used with Prometheus). <br><strong>Cloud-native tools:</strong> AWS CloudWatch, GCP Cloud Monitoring (formerly Stackdriver), Azure Monitor. Key metrics to track for data systems (CPU, memory, disk I/O, network, application-specific metrics).</p>" },
+                                    { id: "de_logging_elk_splunk", title: "Centralized Logging (ELK Stack, Splunk, Cloud Logging)", shortDesc: "Aggregating and analyzing logs.", fullContent: "<p>Implementing centralized logging solutions. <br><strong>ELK Stack:</strong> Elasticsearch (search and analytics engine), Logstash (log ingestion and processing), Kibana (visualization). <br><strong>Splunk:</strong> Commercial platform for searching, monitoring, and analyzing machine-generated data. <br><strong>Cloud-native tools:</strong> AWS CloudWatch Logs, GCP Cloud Logging, Azure Log Analytics.</p>" },
+                                    { id: "de_alerting_systems", title: "Alerting Systems", shortDesc: "Setting up alerts for critical issues (e.g., Alertmanager, PagerDuty).", fullContent: "<p>Configuring alerts based on metrics and log events to proactively identify and respond to issues in data pipelines and infrastructure. Tools like Prometheus Alertmanager, PagerDuty, Opsgenie, or cloud provider alerting services.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "6. Data Governance, Security & Ethics",
+                        moduleIcon: "fas fa-shield-check", // Changed icon
+                        subModules: [
+                            {
+                                subModuleTitle: "6.1. Data Governance",
+                                subModuleIcon: "fas fa-landmark",
+                                topics: [
+                                    { id: "de_gov_metadata", title: "Metadata Management & Data Catalogs (Apache Atlas, Amundsen, DataHub)", shortDesc: "Discovering, understanding, and managing data assets.", fullContent: "<p>Importance of metadata. Using data catalog tools to enable data discovery, lineage tracking, and understanding of data assets. Tools like Apache Atlas, LinkedIn's Amundsen, Uber's DataHub.</p>" },
+                                    { id: "de_gov_lineage", title: "Data Lineage", shortDesc: "Tracking data flow from source to destination.", fullContent: "<p>Understanding and documenting the origin, movement, and transformation of data throughout its lifecycle. Essential for debugging, impact analysis, and regulatory compliance.</p>" },
+                                    { id: "de_gov_master_data_mgmt", title: "Master Data Management (MDM) - Conceptual", shortDesc: "Creating a single source of truth for critical data.", fullContent: "<p>Conceptual understanding of MDM principles for managing critical business data entities (e.g., customer, product) to ensure consistency and accuracy across the organization.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "6.2. Data Security",
+                                subModuleIcon: "fas fa-user-secret", // Changed Icon
+                                topics: [
+                                    { id: "de_sec_access_control_iam", title: "Access Control & IAM", shortDesc: "Managing user permissions and roles (RBAC, ABAC).", fullContent: "<p>Implementing robust access control mechanisms. Identity and Access Management (IAM) in cloud platforms. Role-Based Access Control (RBAC), Attribute-Based Access Control (ABAC). Principle of Least Privilege.</p>" },
+                                    { id: "de_sec_encryption", title: "Data Encryption (At-rest, In-transit)", shortDesc: "Protecting data confidentiality.", fullContent: "<p>Understanding and implementing encryption for data at rest (e.g., encrypting S3 buckets, database encryption) and data in transit (e.g., SSL/TLS for network communication).</p>" },
+                                    { id: "de_sec_masking_anonymization", title: "Data Masking & Anonymization", shortDesc: "Protecting sensitive data in non-production environments.", fullContent: "<p>Techniques for obscuring sensitive data (e.g., PII) when using it for development, testing, or analytics, while preserving its utility. Data masking, pseudonymization, anonymization.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "6.3. Compliance & Ethics",
+                                subModuleIcon: "fas fa-gavel",
+                                topics: [
+                                    { id: "de_compliance_regulations", title: "Data Privacy Regulations (GDPR, CCPA, HIPAA) - Awareness", shortDesc: "Understanding regulatory requirements for data handling.", fullContent: "<p>Awareness of major data privacy regulations like GDPR (General Data Protection Regulation), CCPA (California Consumer Privacy Act), HIPAA (Health Insurance Portability and Accountability Act) and their implications for data engineering practices (e.g., data subject rights, consent management, data retention).</p>" },
+                                    { id: "de_ethics_responsible_data_handling", title: "Ethical Considerations in Data Engineering", shortDesc: "Responsible data collection, storage, and usage.", fullContent: "<p>Understanding the ethical responsibilities associated with handling large volumes of data. Ensuring fairness, transparency, and accountability in data systems. Preventing misuse of data.</p>" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+                        mlops: {
+                domainTitle: "MLOps Engineering Roadmap",
+                domainIcon: "fas fa-rocket",
+                domainDescription: "A comprehensive guide for MLOps Engineers, focusing on automating and streamlining the end-to-end machine learning lifecycle, from data and model management to deployment, monitoring, and governance in production.",
+                modules: [
+                    {
+                        moduleTitle: "1. Foundational Knowledge (ML, Software Eng, DevOps)",
+                        moduleIcon: "fas fa-layer-group", // Changed Icon
+                        subModules: [
+                            {
+                                subModuleTitle: "1.1. Machine Learning Lifecycle Understanding",
+                                subModuleIcon: "fas fa-project-diagram",
+                                topics: [
+                                    {
+                                        id: "mlops_ml_lifecycle_deep", title: "End-to-End ML Workflow",
+                                        shortDesc: "Data acquisition, preprocessing, training, evaluation, deployment, monitoring.",
+                                        fullContent: `
+                                            <h4>Understanding the Entire ML Process</h4>
+                                            <p>An MLOps engineer needs a solid understanding of each stage to automate and optimize it.</p>
+                                            <ul>
+                                                <li><span class='highlight'>Business Understanding & Problem Formulation.</span></li>
+                                                <li><span class='highlight'>Data Acquisition & Collection:</span> Sources, methods, storage.</li>
+                                                <li><span class='highlight'>Data Preparation & Preprocessing:</span> Cleaning, transformation, feature engineering.</li>
+                                                <li><span class='highlight'>Model Training & Development:</span> Algorithm selection, hyperparameter tuning, experimentation.</li>
+                                                <li><span class='highlight'>Model Evaluation & Validation:</span> Metrics, cross-validation, A/B testing concepts.</li>
+                                                <li><span class='highlight'>Model Deployment:</span> Strategies and patterns.</li>
+                                                <li><span class='highlight'>Model Monitoring & Maintenance:</span> Performance tracking, drift detection, retraining.</li>
+                                                <li><span class='highlight'>Feedback Loops:</span> Incorporating production insights back into development.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "mlops_ml_concepts_review", title: "Core ML Concepts Review",
+                                        shortDesc: "Supervised/unsupervised learning, common algorithms, evaluation.",
+                                        fullContent: `
+                                            <h4>Refreshing Key ML Knowledge</h4>
+                                            <p>While not developing models from scratch, MLOps engineers must understand what they are operationalizing.</p>
+                                            <ul>
+                                                <li><span class='highlight'>Types of ML:</span> Supervised (Regression, Classification), Unsupervised (Clustering, Dimensionality Reduction), Reinforcement Learning (basic idea).</li>
+                                                <li><span class='highlight'>Common Algorithms:</span> Familiarity with Linear/Logistic Regression, Decision Trees, Random Forests, SVMs, Gradient Boosting, K-Means, PCA. Basic understanding of Neural Networks.</li>
+                                                <li><span class='highlight'>Model Evaluation Metrics:</span> For classification (Accuracy, Precision, Recall, F1, ROC-AUC) and regression (MSE, RMSE, MAE, R²).</li>
+                                                <li><span class='highlight'>Bias-Variance Tradeoff, Overfitting/Underfitting.</span></li>
+                                            </ul>`
+                                    }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "1.2. Software Engineering for MLOps",
+                                subModuleIcon: "fas fa-code",
+                                topics: [
+                                    {
+                                        id: "mlops_swe_python_adv", title: "Python Proficiency for MLOps",
+                                        shortDesc: "Scripting, OOP, APIs, packaging, testing.",
+                                        fullContent: `
+                                            <h4>Python as the MLOps Lingua Franca</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Strong Scripting Skills:</span> For automation, pipeline definitions, tool integration.</li>
+                                                <li><span class='highlight'>Object-Oriented Programming (OOP):</span> For building reusable MLOps components and tools.</li>
+                                                <li><span class='highlight'>Working with APIs:</span> Interacting with ML platforms, cloud services, model serving endpoints.</li>
+                                                <li><span class='highlight'>Packaging & Distribution:</span> Creating Python packages (<code>setup.py</code>, <code>pyproject.toml</code>), virtual environments (venv, Conda).</li>
+                                                <li><span class='highlight'>Testing:</span> Unit testing (<code>unittest</code>, <code>pytest</code>) for MLOps scripts and components.</li>
+                                                <li><span class='highlight'>Standard Libraries:</span> <code>os</code>, <code>sys</code>, <code>subprocess</code>, <code>json</code>, <code>requests</code>, <code>argparse</code>.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "mlops_swe_version_control_git", title: "Version Control (Git & GitHub/GitLab)",
+                                        shortDesc: "Branching, code reviews, CI integration.",
+                                        fullContent: `
+                                            <h4>Essential for Reproducibility and Collaboration</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Mastery of Git:</span> Commits, branches (feature, release, hotfix), merging, rebasing, tags.</li>
+                                                <li><span class='highlight'>Collaboration Workflows:</span> Pull Requests/Merge Requests, code reviews specifically for MLOps pipelines and configurations.</li>
+                                                <li><span class='highlight'>Integrating Git with CI/CD systems.</span></li>
+                                                <li>Managing configurations as code.</li>
+                                            </ul>`
+                                    }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "1.3. DevOps Principles & Practices",
+                                subModuleIcon: "fas fa-sync-alt", // Changed Icon
+                                topics: [
+                                    {
+                                        id: "mlops_devops_cicd_core", title: "CI/CD (Continuous Integration/Continuous Delivery/Deployment)",
+                                        shortDesc: "Automating build, test, deployment pipelines (Jenkins, GitLab CI, GitHub Actions).",
+                                        fullContent: `
+                                            <h4>Core DevOps Automation</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Continuous Integration (CI):</span> Automatically building, testing code, and ML models/pipelines.</li>
+                                                <li><span class='highlight'>Continuous Delivery (CD):</span> Automating the release of software/models to staging/production environments.</li>
+                                                <li><span class='highlight'>Key Tools:</span> Jenkins, GitLab CI, GitHub Actions, AWS CodePipeline, Azure DevOps, GCP Cloud Build.</li>
+                                                <li>Understanding pipeline-as-code.</li>
+                                                <li>Differences between CI/CD for traditional software vs. ML systems (CT - Continuous Training).</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "mlops_devops_iac_terraform", title: "Infrastructure as Code (IaC)",
+                                        shortDesc: "Terraform, CloudFormation, ARM Templates for provisioning resources.",
+                                        fullContent: `
+                                            <h4>Managing Infrastructure Programmatically</h4>
+                                            <ul>
+                                                <li><span class='highlight'>Terraform:</span> Declaratively define and provision cloud infrastructure (compute, storage, networking, ML services).</li>
+                                                <li><span class='highlight'>Cloud-Specific IaC:</span> AWS CloudFormation, Azure Resource Manager (ARM) Templates, GCP Cloud Deployment Manager.</li>
+                                                <li>Benefits: Automation, consistency, version control of infrastructure, disaster recovery.</li>
+                                            </ul>`
+                                    },
+                                    {
+                                        id: "mlops_devops_monitoring_logging", title: "Monitoring, Logging, and Alerting Basics",
+                                        shortDesc: "Prometheus, Grafana, ELK Stack, Cloud-native tools.",
+                                        fullContent: `
+                                            <h4>Observability Fundamentals</h4>
+                                            <p>Understanding how to monitor traditional application and infrastructure health, which is a precursor to ML-specific monitoring.</p>
+                                            <ul>
+                                                <li><span class='highlight'>Metrics Collection:</span> Tools like Prometheus.</li>
+                                                <li><span class='highlight'>Visualization:</span> Dashboards with Grafana.</li>
+                                                <li><span class='highlight'>Centralized Logging:</span> ELK Stack (Elasticsearch, Logstash, Kibana), Splunk.</li>
+                                                <li><span class='highlight'>Alerting:</span> Setting up alerts for critical system issues.</li>
+                                                <li>Cloud-native observability tools (CloudWatch, Azure Monitor, GCP Cloud Monitoring).</li>
+                                            </ul>`
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "2. Data Management for MLOps",
+                        moduleIcon: "fas fa-database",
+                        subModules: [
+                            {
+                                subModuleTitle: "2.1. Data Versioning & Lineage",
+                                subModuleIcon: "fas fa-history",
+                                topics: [
+                                    { id: "mlops_data_dvc", title: "Data Version Control (DVC, LakeFS)", shortDesc: "Versioning datasets, tracking changes, reproducibility.", fullContent: "<p>Tools to version large datasets alongside code. <br><strong>DVC:</strong> Integrates with Git to track versions of data files and models stored in S3, GCS, etc. <br><strong>LakeFS:</strong> Provides Git-like operations (branching, merging, committing) directly on data lakes.</p>" },
+                                    { id: "mlops_data_lineage_tools", title: "Data Lineage Tools (Apache Atlas, Amundsen)", shortDesc: "Tracking data flow from source through transformations to model.", fullContent: "<p>Understanding and visualizing how data is sourced, transformed, and used to train models. Crucial for debugging, impact analysis, and governance. Tools like Apache Atlas, Amundsen, DataHub.</p>" },
+                                    { id: "mlops_data_feature_stores", title: "Feature Stores (Feast, Tecton) - Conceptual", shortDesc: "Centralized repository for features for training and serving.", fullContent: "<p>Concept of a feature store as a central place to manage, discover, and serve features consistently for both ML model training (batch) and online inference (real-time). Tools like Feast, Tecton (commercial).</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "2.2. Data Pipelines for ML",
+                                subModuleIcon: "fas fa-stream",
+                                topics: [
+                                    { id: "mlops_data_pipeline_automation", title: "Automating Data Preprocessing Pipelines", shortDesc: "Using Airflow, Kubeflow Pipelines, etc., for data prep.", fullContent: "<p>Building automated, repeatable, and scalable data pipelines for feature engineering and preprocessing tasks specific to ML. Orchestrating these pipelines using tools like Apache Airflow, Kubeflow Pipelines, or cloud-specific services (AWS Step Functions, GCP Vertex AI Pipelines).</p>" },
+                                    { id: "mlops_data_validation_quality", title: "Data Validation & Quality for ML", shortDesc: "Great Expectations, TFDV for ensuring data quality for models.", fullContent: "<p>Implementing robust data validation checks at various stages of the ML pipeline. <br><strong>Great Expectations:</strong> Defining data expectations and validating datasets. <br><strong>TensorFlow Data Validation (TFDV):</strong> For understanding, validating, and monitoring ML data at scale. Schema generation and anomaly detection.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "3. Model Development & Experimentation Ops",
+                        moduleIcon: "fas fa-vial", // Changed Icon
+                        subModules: [
+                            {
+                                subModuleTitle: "3.1. Experiment Tracking & Management",
+                                subModuleIcon: "fas fa-clipboard-list",
+                                topics: [
+                                    { id: "mlops_exp_mlflow_tracking", title: "MLflow Tracking", shortDesc: "Logging parameters, metrics, code versions, artifacts.", fullContent: "<p>Using MLflow to systematically log and organize ML experiments. Tracking hyperparameters, code versions (Git commits), performance metrics, and model artifacts. Comparing runs to identify best models.</p>" },
+                                    { id: "mlops_exp_wandb_comet", title: "Weights & Biases (W&B) / Comet ML", shortDesc: "Alternative powerful experiment tracking platforms.", fullContent: "<p>Exploring other popular platforms like Weights & Biases or Comet ML, which offer rich UIs, collaboration features, and advanced visualizations for experiment tracking and model management.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "3.2. Model Versioning & Registry",
+                                subModuleIcon: "fas fa-archive", // Changed icon
+                                topics: [
+                                    { id: "mlops_model_versioning_tools", title: "Model Versioning Strategies & Tools (MLflow Models, DVC)", shortDesc: "Tracking different versions of trained models.", fullContent: "<p>Implementing strategies for versioning trained model artifacts. Using tools like MLflow Model Registry or DVC (with Git) to manage model versions, associate them with experiments, and track their lifecycle.</p>" },
+                                    { id: "mlops_model_registry", title: "Model Registry", shortDesc: "Centralized storage, management, and governance of models.", fullContent: "<p>A centralized system for storing, versioning, and managing ML models. Facilitates model discovery, staging (dev, staging, prod), and governance. MLflow Model Registry, cloud provider registries (SageMaker, Vertex AI, Azure ML).</p>" }
+                                ]
+                            },
+                             {
+                                subModuleTitle: "3.3. Reproducible ML Environments",
+                                subModuleIcon: "fas fa-box-open", // Changed Icon
+                                topics: [
+                                    { id: "mlops_env_docker_ml", title: "Docker for ML Development & Training", shortDesc: "Creating consistent environments for training and inference.", fullContent: "<p>Using Docker to containerize ML training environments, ensuring all dependencies (libraries, CUDA versions for GPUs) are consistent across development, testing, and production. Building Docker images for ML training jobs.</p>" },
+                                    { id: "mlops_env_conda_venv", title: "Dependency Management (Conda, venv, Poetry)", shortDesc: "Managing Python package dependencies.", fullContent: "<p>Effectively managing Python dependencies for ML projects to avoid conflicts and ensure reproducibility. Tools like Conda (for data science specific packages), venv (standard Python), Poetry (modern dependency management and packaging).</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "4. Model Deployment & Serving",
+                        moduleIcon: "fas fa-shipping-fast",
+                        subModules: [
+                            {
+                                subModuleTitle: "4.1. Containerization & Orchestration",
+                                subModuleIcon: "fab fa-docker",
+                                topics: [
+                                    { id: "mlops_deploy_docker_deep", title: "Docker for Model Serving", shortDesc: "Packaging models with serving code (Flask/FastAPI).", fullContent: "<p>Creating Docker images that bundle a trained model with a web server (e.g., Flask, FastAPI, Gunicorn) to expose prediction endpoints. Optimizing images for size and startup time.</p>" },
+                                    { id: "mlops_deploy_kubernetes_ml", title: "Kubernetes for ML Deployment", shortDesc: "Deploying, scaling, and managing containerized ML models.", fullContent: "<p>Using Kubernetes to orchestrate containerized ML models. Concepts: Deployments, Services, Ingress, ConfigMaps, Secrets. Horizontal Pod Autoscaler (HPA) for scaling. Resource requests and limits for ML workloads.</p>" },
+                                    { id: "mlops_deploy_helm_kustomize", title: "Kubernetes Package Management (Helm, Kustomize) - Conceptual", shortDesc: "Managing Kubernetes applications.", fullContent: "<p>Conceptual understanding of tools like Helm (package manager for Kubernetes) and Kustomize (template-free way to customize Kubernetes manifests) for managing complex ML application deployments on Kubernetes.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "4.2. Model Serving Patterns & Tools",
+                                subModuleIcon: "fas fa-server",
+                                topics: [
+                                    { id: "mlops_deploy_api_patterns", title: "API Design for ML Models (REST, gRPC)", shortDesc: "Designing robust and efficient prediction APIs.", fullContent: "<p>Best practices for designing prediction APIs. RESTful APIs (JSON payloads). gRPC for high-performance, low-latency communication (binary payloads using Protocol Buffers). Versioning APIs.</p>" },
+                                    { id: "mlops_deploy_batch_vs_online", title: "Batch vs. Online (Real-time) Inference", shortDesc: "Choosing appropriate serving strategy.", fullContent: "<p>Understanding the tradeoffs and use cases for batch inference (periodic predictions on large datasets) and online inference (on-demand predictions for live applications). Designing systems for both.</p>" },
+                                    { id: "mlops_deploy_model_servers", title: "Dedicated Model Servers (TF Serving, TorchServe, Triton, Seldon)", shortDesc: "Specialized tools for optimized model serving.", fullContent: "<p>Using dedicated model serving frameworks that offer optimizations for specific ML frameworks (e.g., TensorFlow Serving, TorchServe), support for multiple frameworks (NVIDIA Triton Inference Server), and advanced features like model ensembles, A/B testing (Seldon Core, KServe/KFServing).</p>" },
+                                    { id: "mlops_deploy_serverless_ml", title: "Serverless ML Inference (AWS Lambda, GCP Cloud Functions, Azure Functions)", shortDesc: "Deploying models without managing servers.", fullContent: "<p>Using serverless functions for deploying ML models, especially for event-driven or infrequently called models. Pros (cost-effective for low traffic, auto-scaling) and cons (cold starts, size limitations).</p>" }
+                                ]
+                            },
+                             {
+                                subModuleTitle: "4.3. Deployment Strategies",
+                                subModuleIcon: "fas fa-route", // Changed Icon
+                                topics: [
+                                    { id: "mlops_deploy_blue_green", title: "Blue/Green Deployments", shortDesc: "Minimizing downtime by switching traffic between two identical environments.", fullContent: "<p>Deploying a new model version (green) alongside the old version (blue) and then switching traffic. Allows for quick rollback if issues arise.</p>" },
+                                    { id: "mlops_deploy_canary", title: "Canary Releases", shortDesc: "Gradually rolling out new model version to a subset of users.", fullContent: "<p>Releasing a new model version to a small percentage of users/traffic first, monitoring its performance, and then gradually increasing exposure if it performs well.</p>" },
+                                    { id: "mlops_deploy_shadow", title: "Shadow Deployments (Dark Launch)", shortDesc: "Running new model in parallel with old, without affecting users.", fullContent: "<p>Deploying a new model version to receive live traffic alongside the current production model, but its predictions are not served to users. Used for testing the new model's performance and stability in a production environment.</p>" },
+                                    { id: "mlops_deploy_ab_testing_ml", title: "A/B Testing for Models", shortDesc: "Comparing performance of different model versions on live traffic.", fullContent: "<p>Directly comparing the performance of two or more model versions by serving them to different segments of users and measuring their impact on key business metrics.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "5. ML Pipeline Automation & Orchestration (CI/CD/CT)",
+                        moduleIcon: "fas fa-cogs",
+                        subModules: [
+                            {
+                                subModuleTitle: "5.1. CI/CD for Machine Learning (CICD4ML / CT)",
+                                subModuleIcon: "fas fa-robot", // Changed Icon
+                                topics: [
+                                    { id: "mlops_cicd_principles_ml", title: "Principles of CI/CD for ML (Continuous Training - CT)", shortDesc: "Automating testing, training, and deployment of ML pipelines.", fullContent: "<p>Extending CI/CD principles to the entire ML lifecycle. Continuous Training (CT) involves automatically retraining, testing, and deploying models when new data arrives or performance degrades. Includes code tests, data validation tests, model validation tests, and integration tests.</p>" },
+                                    { id: "mlops_cicd_tools_ml", title: "Using CI/CD Tools for ML (Jenkins, GitLab CI, GitHub Actions)", shortDesc: "Building automated ML pipelines.", fullContent: "<p>Configuring CI/CD tools to trigger ML training pipelines, run tests, version artifacts (data, code, model), and deploy models. Using pipeline-as-code features of these tools.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "5.2. ML Pipeline Orchestration Tools",
+                                subModuleIcon: "fas fa-sitemap",
+                                topics: [
+                                    { id: "mlops_pipeline_kubeflow", title: "Kubeflow Pipelines", shortDesc: "Building and deploying portable, scalable ML workflows on Kubernetes.", fullContent: "<p>An MLOps platform built on Kubernetes. Kubeflow Pipelines for defining, deploying, and managing end-to-end ML workflows (DAGs of components). Reusability of components.</p>" },
+                                    { id: "mlops_pipeline_airflow_ml", title: "Apache Airflow for ML Orchestration", shortDesc: "Using Airflow to schedule and monitor ML training and deployment tasks.", fullContent: "<p>Leveraging Airflow's robust scheduling and orchestration capabilities for ML tasks. Integrating with ML frameworks and tools via Airflow operators and hooks.</p>" },
+                                    { id: "mlops_pipeline_cloud_native", title: "Cloud-Native ML Orchestration (AWS Step Functions, SageMaker Pipelines, Vertex AI Pipelines, Azure ML Pipelines)", shortDesc: "Managed services for ML workflow automation.", fullContent: "<p>Using managed services from cloud providers for building and orchestrating ML pipelines. Benefits: integration with other cloud services, scalability, reduced operational overhead.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "6. Model Monitoring, Governance & Ethics in Ops",
+                        moduleIcon: "fas fa-eye", // Changed Icon
+                        subModules: [
+                            {
+                                subModuleTitle: "6.1. Production Model Monitoring",
+                                subModuleIcon: "fas fa-chart-bar",
+                                topics: [
+                                    { id: "mlops_monitor_performance_prod", title: "Monitoring Model Performance Metrics", shortDesc: "Tracking accuracy, precision, recall, MSE etc. in production.", fullContent: "<p>Continuously tracking relevant model performance metrics on live prediction data. Setting up dashboards and alerts for performance degradation.</p>" },
+                                    { id: "mlops_monitor_data_drift", title: "Data Drift Detection", shortDesc: "Identifying changes in input data distribution over time.", fullContent: "<p>Monitoring the statistical properties of input data to models and detecting significant deviations from the training data distribution. Techniques: statistical tests, distribution comparisons.</p>" },
+                                    { id: "mlops_monitor_concept_drift", title: "Concept Drift Detection", shortDesc: "Identifying changes in the relationship between input features and target variable.", fullContent: "<p>Detecting when the underlying patterns the model learned have changed, leading to performance degradation even if input data distribution is stable. Often requires labeled feedback data or proxy metrics.</p>" },
+                                    { id: "mlops_monitor_operational_metrics", title: "Operational Monitoring (Latency, Throughput, Error Rates)", shortDesc: "Tracking system health of serving infrastructure.", fullContent: "<p>Monitoring the health and performance of the model serving infrastructure. Key metrics: prediction latency, requests per second (throughput), server error rates, resource utilization (CPU, memory).</p>" },
+                                    { id: "mlops_monitor_tools", title: "Monitoring Tools & Platforms (Prometheus, Grafana, Seldon Alibi Detect, Evidently AI, Cloud Dashboards)", shortDesc: "Specialized tools for ML monitoring.", fullContent: "<p>Using a combination of general monitoring tools (Prometheus, Grafana) and specialized ML monitoring tools/libraries (e.g., Seldon Alibi Detect for drift/outlier detection, Evidently AI for model quality dashboards). Cloud provider dashboards and monitoring services.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "6.2. ML Governance & Explainability in Ops",
+                                subModuleIcon: "fas fa-balance-scale-right", // Changed Icon
+                                topics: [
+                                    { id: "mlops_gov_auditability_reproducibility", title: "Auditability & Reproducibility in Production", shortDesc: "Ensuring ML systems can be audited and results reproduced.", fullContent: "<p>Maintaining comprehensive logs and versioning of data, code, models, and configurations to ensure that any prediction or model behavior can be traced back and reproduced. Essential for regulatory compliance and debugging.</p>" },
+                                    { id: "mlops_gov_xai_ops", title: "Operationalizing Explainable AI (XAI)", shortDesc: "Providing model explanations for production predictions (LIME, SHAP).", fullContent: "<p>Integrating XAI techniques into production systems to provide explanations for individual predictions. Serving explanations via APIs. Using tools like LIME, SHAP, or model-specific interpretability methods in a scalable way.</p>" },
+                                    { id: "mlops_gov_bias_fairness_monitoring", title: "Bias & Fairness Monitoring in Production", shortDesc: "Continuously monitoring models for fairness across different groups.", fullContent: "<p>Setting up systems to monitor fairness metrics for deployed models across sensitive attributes (e.g., race, gender). Alerting on fairness violations and triggering reviews or retraining if necessary.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "6.3. Security for ML Systems",
+                                subModuleIcon: "fas fa-user-shield", // Changed Icon
+                                topics: [
+                                    { id: "mlops_sec_model_security", title: "Model Security & Adversarial Attacks", shortDesc: "Protecting models from attacks (e.g., evasion, poisoning - conceptual).", fullContent: "<p>Understanding potential security vulnerabilities of ML models in production. Conceptual understanding of adversarial attacks (evasion attacks, poisoning attacks, model inversion) and basic defense strategies.</p>" },
+                                    { id: "mlops_sec_data_privacy_ops", title: "Data Privacy in ML Operations", shortDesc: "Ensuring compliance with GDPR, CCPA during inference and logging.", fullContent: "<p>Implementing data privacy best practices in production ML systems. Secure handling of PII/sensitive data during inference. Anonymizing or pseudonymizing logs. Adhering to data retention policies.</p>" },
+                                    { id: "mlops_sec_infra_security", title: "Infrastructure Security for ML", shortDesc: "Securing APIs, containers, cloud resources.", fullContent: "<p>Applying standard infrastructure security practices to ML deployment environments. Securing prediction APIs (authentication, authorization, rate limiting). Secure container configurations. Network security (firewalls, VPCs). IAM best practices for cloud resources.</p>" }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        moduleTitle: "7. Cloud Platforms for MLOps",
+                        moduleIcon: "fas fa-cloud-upload-alt", // Changed icon
+                        subModules: [
+                             {
+                                subModuleTitle: "7.1. AWS MLOps Stack",
+                                subModuleIcon: "fab fa-aws",
+                                topics: [
+                                    { id: "mlops_aws_sagemaker", title: "Amazon SageMaker Suite", shortDesc: "SageMaker Studio, Pipelines, Model Registry, Endpoints, Model Monitor.", fullContent: "<p>Deep dive into SageMaker's MLOps capabilities: SageMaker Studio for IDE, SageMaker Pipelines for orchestration, Model Registry, Endpoints for deployment, Model Monitor for drift detection, Feature Store.</p>" },
+                                    { id: "mlops_aws_devops_tools", title: "AWS DevOps & Data Services Integration", shortDesc: "CodePipeline, CodeBuild, Step Functions, Lambda, S3, Glue, ECR.", fullContent: "<p>Integrating SageMaker with other AWS services like CodePipeline/CodeBuild for CI/CD, Step Functions for complex workflows, Lambda for serverless components, S3 for storage, Glue for data prep, ECR for container registry.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "7.2. GCP MLOps Stack",
+                                subModuleIcon: "fab fa-google",
+                                topics: [
+                                    { id: "mlops_gcp_vertex_ai", title: "Google Cloud Vertex AI", shortDesc: "Vertex AI Pipelines, Training, Prediction, Model Registry, Feature Store, Explainable AI.", fullContent: "<p>Exploring Vertex AI as a unified MLOps platform on GCP. Vertex AI Pipelines, custom/autoML training, endpoint deployment, Model Registry, Feature Store, integrated Explainable AI, Model Monitoring.</p>" },
+                                    { id: "mlops_gcp_devops_tools", title: "GCP DevOps & Data Services Integration", shortDesc: "Cloud Build, Cloud Functions, GCS, Dataflow, Artifact Registry.", fullContent: "<p>Integrating Vertex AI with other GCP services like Cloud Build for CI/CD, Cloud Functions, Google Cloud Storage (GCS), Dataflow for data processing, Artifact Registry for containers and packages.</p>" }
+                                ]
+                            },
+                            {
+                                subModuleTitle: "7.3. Azure MLOps Stack",
+                                subModuleIcon: "fab fa-microsoft",
+                                topics: [
+                                    { id: "mlops_azure_ml", title: "Azure Machine Learning", shortDesc: "Azure ML Workspaces, Pipelines, Model Management, Endpoints, Responsible AI Dashboard.", fullContent: "<p>Using Azure ML for end-to-end MLOps. Workspaces, Datasets, Environments, Pipelines for orchestration, Model registry, Endpoints (batch & online), Responsible AI dashboard (interpretability, fairness).</p>" },
+                                    { id: "mlops_azure_devops_tools", title: "Azure DevOps & Data Services Integration", shortDesc: "Azure Pipelines, Azure Functions, Blob Storage, Data Factory, ACR.", fullContent: "<p>Integrating Azure ML with Azure DevOps for CI/CD, Azure Functions, Blob Storage, Azure Data Factory, Azure Container Registry (ACR).</p>" }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }; // IMPORTANT: This is the closing }; for the entire contentData object
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const roadmapSections = document.querySelectorAll('.roadmap-section');
+        const contentContainer = document.querySelector('.content-container'); // For event delegation
+
+        const modal = document.getElementById('topicModal');
+        const modalTitleEl = document.getElementById('modalTopicTitle');
+        const modalBodyEl = document.getElementById('modalTopicBody');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function renderDomainContent(domainKey) {
+            const domainData = contentData[domainKey];
+            const sectionElement = document.getElementById(`${domainKey}-section`);
+            if (!domainData || !sectionElement) return;
+
+            let htmlContent = `
+                <div class="roadmap-header">
+                    <i class="${domainData.domainIcon}"></i>
+                    <h2>${domainData.domainTitle}</h2>
+                </div>
+                <p class="roadmap-description">${domainData.domainDescription}</p>
+            `;
+
+            domainData.modules.forEach(module => {
+                htmlContent += `
+                    <div class="module">
+                        <div class="module-header">
+                            <i class="${module.moduleIcon}"></i>
+                            <span>${module.moduleTitle}</span>
+                        </div>
+                        <div class="module-content">`;
+                
+                module.subModules.forEach(subModule => {
+                    htmlContent += `
+                        <div class="sub-module">
+                            <h4 class="sub-module-title">
+                                <i class="${subModule.subModuleIcon}"></i>
+                                ${subModule.subModuleTitle}
+                            </h4>
+                            <ul class="topic-list">`;
+                    
+                    subModule.topics.forEach(topic => {
+                        htmlContent += `
+                            <li class="topic-item" data-topic-id="${topic.id}" data-domain="${domainKey}">
+                                <i class="fas fa-book-reader"></i> <!-- Generic icon for topics -->
+                                <h5>${topic.title}</h5>
+                            </li>`;
+                    });
+                    htmlContent += `</ul></div>`; // Close sub-module
+                });
+                htmlContent += `</div></div>`; // Close module-content and module
+            });
+            sectionElement.innerHTML = htmlContent;
+        }
+
+        function findTopicData(domainKey, topicId) {
+            const domainData = contentData[domainKey];
+            if (!domainData) return null;
+
+            for (const module of domainData.modules) {
+                for (const subModule of module.subModules) {
+                    const topic = subModule.topics.find(t => t.id === topicId);
+                    if (topic) return topic;
+                }
+            }
+            return null;
+        }
+        
+        // Tab Switching Functionality
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const targetTab = button.getAttribute('data-tab');
+                
+                roadmapSections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === `${targetTab}-section`) {
+                        section.classList.add('active');
+                        // Render content if it hasn't been rendered yet or needs refresh
+                        // For now, let's render every time for simplicity
+                        if(!section.querySelector('.roadmap-header')){ // Basic check if content is loaded
+                             renderDomainContent(targetTab);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Event delegation for topic clicks
+        contentContainer.addEventListener('click', (event) => {
+            const topicItem = event.target.closest('.topic-item');
+            if (topicItem) {
+                const topicId = topicItem.getAttribute('data-topic-id');
+                const domainKey = topicItem.getAttribute('data-domain');
+                const topicData = findTopicData(domainKey, topicId);
+
+                if (topicData) {
+                    modalTitleEl.textContent = topicData.title;
+                    modalBodyEl.innerHTML = topicData.fullContent; // Make sure fullContent is safe HTML
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden'; // Prevent background scroll
+                }
+            }
+        });
+        
+        // Module Accordion/Toggle (Optional - initially show all)
+        // If you want accordion style, uncomment and refine this:
+        /*
+        contentContainer.addEventListener('click', (event) => {
+            const moduleHeader = event.target.closest('.module-header');
+            if (moduleHeader) {
+                const moduleContent = moduleHeader.nextElementSibling;
+                if (moduleContent && moduleContent.classList.contains('module-content')) {
+                    moduleContent.style.display = moduleContent.style.display === 'none' || moduleContent.style.display === '' ? 'block' : 'none';
+                }
+            }
+        });
+        */
+
+        // Initial content rendering for the active tab
+        document.addEventListener('DOMContentLoaded', () => {
+            const initiallyActiveTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
+            renderDomainContent(initiallyActiveTab);
+            document.getElementById(`${initiallyActiveTab}-section`).classList.add('active');
+        });
+
+        // Modal close functionality
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+    </script>
+</body>
+</html>
